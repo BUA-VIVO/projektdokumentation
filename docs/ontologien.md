@@ -12,7 +12,9 @@ The group redifined topics like "Faculty", which, in the American domain is the 
 With this work as a basis, we extended the VIVO ontology with multiple topics through our work in analysing the "Organigrams" (organisational charts) of each member organisation. Structurally the organisational structures would be quite similar, but semantically, the wording, and sometimes the functional meaning of the units would be quite different. To ensure that plurality and local varieties be kept, we needed to take into account that each alliance member would need to use and find research information related to their own terminology. 
 
 
-
+To achieve this, e created an upper ontology with common, more abstract classes and an ontology for each member, containing instantiations of common classes retaining local names and idiosyncrasies.	
+![Fig 1: Alliance member subsumption hierarchy](images/subsumption_hierarchy_model_extensions_only.png)
+*Fig 1: Alliance member subsumption hierarchy*
 
 
 
