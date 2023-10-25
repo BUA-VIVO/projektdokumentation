@@ -4,7 +4,7 @@ their research activities within the framework of the Berlin University Alliance
 discoverability of expertise, connecting researchers to their work across disciplines and boundaries, and facilitating new
 research collaborations. The platform is established using the open-source, web-based VIVO software.
 
-![Three universtities and the Charite are collaborating within the framework of the VIVO project](images/BUAVivo-overview.jpg)
+![Three universtities and the Charité are collaborating within the framework of the VIVO project](images/BUAVivo-overview.jpg)
 
 ## Funder and Duration
 This project is funded by the Federal Ministry of Education and Research (BMBF) and the state of Berlin under the Excellence
