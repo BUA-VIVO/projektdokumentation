@@ -22,7 +22,15 @@ nav:
         - Automatic pre classification: vorklassifikationspipelines.md
         - API-import: apiimport.md
         - API-classification: api-klassifikationspipelines.md
-  - Ontologies: ontologien.md
+  - Ontologies:
+    - Overview: ontologien.md
+    - BUA VIVO Upper Ontology: bua-ontology.md
+    - Alliance member Ontologies:
+      - Organigram ontologies: organigram.md
+      - Charité University Hospital Ontology Extension: charite-ontology.md
+      - Freie Univesität Berlin Ontology Extension: fub-ontology.md
+      - Humbold Univesität zu Berlin Ontology Extension: hub-ontology.md
+      - Technische Univesität Berlin Ontology Extension: tub-ontology.md
   - Vokabularies: vokabularen.md
 theme:
   name: material
