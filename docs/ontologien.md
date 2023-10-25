@@ -14,7 +14,9 @@ With this work as a basis, we extended the VIVO ontology with multiple topics th
 
 To achieve this, e created an upper ontology with common, more abstract classes and an ontology for each member, containing instantiations of common classes retaining local names and idiosyncrasies.	
 ![Fig 1: Alliance member subsumption hierarchy](images/subsumption_hierarchy_model_extensions_only.png)
-*Fig 1: Alliance member subsumption hierarchy*
+*Fig 1: Alliance member subsumption hierarchy*. 
+
+:material-page-next:
 
 
 
