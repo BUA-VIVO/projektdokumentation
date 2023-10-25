@@ -18,6 +18,10 @@ To achieve this, e created an upper ontology with common, more abstract classes 
 
 :material-page-next:
 
+:smile:
+
+:fontawesome-regular-face-laugh-wink:
+
 
 
 
