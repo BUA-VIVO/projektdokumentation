@@ -6,6 +6,6 @@ This project is funded by the Federal Ministry of Education and Research (BMBF) 
 
 ### Useful Link
 Project [website](https://www.berlin-university-alliance.de/en/commitments/sharing-resources/vivo/index.html)
-Project works on [Zenodo](https://)
+Project works on [Zenodo](https://www)
 
 
