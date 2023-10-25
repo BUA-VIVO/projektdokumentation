@@ -25,7 +25,7 @@ nav:
   - Ontologies:
     - Overview: ontologien.md
     - BUA VIVO Upper Ontology: bua-ontology.md
-    Alliance member Ontologies:
+    - Alliance member Ontologies:
       - Organigram ontologies: organigram.md
       - Charité University Hospital Ontology Extension: charite-ontology.md
       - Freie Univesität Berlin Ontology Extension: fub-ontology.md
