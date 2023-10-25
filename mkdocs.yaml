@@ -22,7 +22,8 @@ nav:
         - Automatic pre classification: vorklassifikationspipelines.md
         - API-import: apiimport.md
         - API-classification: api-klassifikationspipelines.md
-  - Ontologies: ontologien.md
+  - Ontologies:
+    - Overview: ontologien.md
     - BUA VIVO Upper Ontology: bua-ontology.md
     Alliance member Ontologies:
       - Organigram ontologies: organigram.md
