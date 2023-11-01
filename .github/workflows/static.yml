@@ -20,9 +20,7 @@ jobs:
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs-material
+      - run: pip install mkdocs-material 
       - run: pip install mkdocs-material-extensions
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
