@@ -1,6 +1,8 @@
-# Organigram ontologies 
+# Organigram ontologies
 
-The Berlin University Alliance consists of 3 universities and one University Hospital, where the universities have conceptually similar structures, but also diverge on many points. Sometimes in terms of structure other times in the terms of the naming of similar structures. The University hospital diverges on all points, for all of them there was a need to represent these structures in a formal ontology, in order to facilitate the assignment and relation of research output and their creators to the member institutions.
+[Code on GitHub](https://github.com/BUA-VIVO/bua-organigram)
+
+The Berlin University Alliance consists of 3 universities and one University Hospital, where the universities have conceptually similar structures, but also diverge on many points. Sometimes in terms of structure other times in the terms of the naming of similar structureCode on GitHubs. The University hospital diverges on all points, for all of them there was a need to represent these structures in a formal ontology, in order to facilitate the assignment and relation of research output and their creators to the member institutions.
 
 The source of information for the Organigram ontologies were different from institution to institution, as some of the institutions would have a dedicated document diagramming the main structural units, ins one case the only source were the web sites of the university, in only one case there was a dedicated API connected to a central administrative system.
 In most cases, the work of creating the ontologies entailed manual work, as the de facto structures would often diverge from the diagrams given and sometimes be quite inconsistent as well.
