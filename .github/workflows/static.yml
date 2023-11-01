@@ -17,11 +17,10 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-      - run: pip install mkdocs-material 
-      - run: pip install mkdocs-material-extensions
+      - run: |
+         python -m pip install mkdocs-material 
+      - run: |
+         python -m pip install mkdocs-material-extensions
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
