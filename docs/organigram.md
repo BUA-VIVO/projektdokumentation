@@ -35,3 +35,4 @@ Figure 3, shows the first layer, implemented by relating entities to subject mat
 The DESTATIS subject matter classification is programatically assigned to the enitites in the organigram ontologies based on a simple pattern matching algorith, which in the end resulted in a partial assignment of subject matters to the insitutional entities, which need manual interaction by domain experts in order to be proof read and completed for each alliance member organigram.
 
 :smile:
+:mdiSkipNext:
