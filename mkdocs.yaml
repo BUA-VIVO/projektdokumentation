@@ -74,8 +74,8 @@ theme:
   - pymdownx.mark
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:mkdocs-material-extensions.emoji.twemoji
-      emoji_generator: !!python/name:mkdocs-material-extensions.emoji.to_svg
+      emoji_index: !!python/name:mkdocs.material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:mkdocs.material.extensions.emoji.to_svg
 
 
 
