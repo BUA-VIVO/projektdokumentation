@@ -72,8 +72,6 @@ theme:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.mark
-  - fontawesome_markdown
-  - !!python/object:fontawesome_markdown.FontAwesomeExtension
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
