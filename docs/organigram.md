@@ -16,8 +16,8 @@ The resulting ontologies are thought to be available for continuous update throu
 
 Fig 1, shows us a view of the Classes found in the Charité organigram. Since it is a University hospital we see several Classes similar to for instance the Classes in Fig 2., while containing other classes specific to the University Hospital domain, subclassing entities from the VIVO ontology extensions representative of its domain.
 
-![Fig 1: Charité Protegé class view](images/Charite-Protege-Classes.png)
-*Fig 1: Charité Protegé class view*
+![Fig 1: Charité University Hospital Protegé class view](images/Charite-Protege-Classes.png)
+*Fig 1: Charité University Hospital Protegé class view*
 
 As we see in Fig 2, there are some classes which bear the same names as classes in Fig 1, which might, in some cases, mean that they have the same semantic meaning and function, most often they diverge to a variable degree. At the same time there are classes which have dissimilar or partly similar names which might have a closer semantic and functional resemblance, which from the naming alone is not possible to infer.
 
@@ -35,6 +35,3 @@ Figure 3, shows the first layer, implemented by relating entities to subject mat
 *Fig 3: Technische Universität Berlin Protegé detail view*
 
 The DESTATIS subject matter classification is programatically assigned to the enitites in the organigram ontologies based on a simple pattern matching algorith, which in the end resulted in a partial assignment of subject matters to the insitutional entities, which need manual interaction by domain experts in order to be proof read and completed for each alliance member organigram.
-
-:smile:
-:mdiSkipNext:
