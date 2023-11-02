@@ -29,8 +29,7 @@ nav:
       - Organigram ontologies: organigram.md
       - Charité – Universitätsmedizin Berlin Ontology Extension: charite-ontology.md
       - Freie Universität Berlin Ontology Extension: fub-ontology.md
-      - Humbold Universität zu Berlin Ontology Extension: hub-ontology.md
-      - Technische Universität Berlin Ontology Extension: tub-ontology.md
+      - Berlin University Alliance VIVO Ontology Extension: vivo-core.md
   - Vokabularies: vokabularen.md
 theme:
   name: material

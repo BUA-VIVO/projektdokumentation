@@ -8,3 +8,5 @@ The Charité University Hospital Ontology Extension was created on basis of the 
 *Fig 1: Charité VIVO Ontology Extension*
 
 Fig 1 shows a diagrammatic representation of the Ontology extensions with entities particular to the domain, all subclassing the classes *foaf:Organization* from the [FOAF ontology](http://xmlns.com/foaf/0.1/#term_Organization) and *vivo:AcademicDepartment* from the [VIVO ontology](https://raw.githubusercontent.com/vivo-project/VIVO/main/home/src/main/resources/rdf/tbox/filegraph/vivo.owl) 
+
+The ontology is to be regarded as a living mapping of the entities particular to the domain, and should be revised regularly to ensure that any changes to the structure is regsitered and updated.
