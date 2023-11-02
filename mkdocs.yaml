@@ -29,8 +29,8 @@ nav:
       - Organigram ontologies: organigram.md
       - Charité – Universitätsmedizin Berlin Ontology Extension: charite-ontology.md
       - Freie Universität Berlin Ontology Extension: fub-ontology.md
-      - Berlin University Alliance VIVO Ontology Extension: vivo-core.md
-  - Vokabularies: vokabularen.md
+      - Berlin University Alliance VIVO   Ontology Extension: vivo-core.md
+  - Vocabularies: vokabularen.md
 theme:
   name: material
   language: en
