@@ -53,15 +53,13 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 
 4. Classifies documents over Sherpa's REST APIs classifications endpoints, using the resulting train models and produces resulting JSON files containing the classifications and pre-classifications for proof
 
-	``` python
+```python
+	#  Classify PDFs over Sherpa-API
 	
-		#  Classify PDFs over Sherpa-API
-		
-		load_envs() # Load environment variables from .env
-		if not wait_for_job():
-			api_Classifier = apiClassifier(fp_edocRI, fp_b2find, fp_dewey, pdfPath)
-			api_Classifier.call_api()
-			
-	```
+	load_envs() # Load environment variables from .env
+	if not wait_for_job():
+		api_Classifier = apiClassifier(fp_edocRI, fp_b2find, fp_dewey, pdfPath)
+		api_Classifier.call_api()		
+```
 
 
