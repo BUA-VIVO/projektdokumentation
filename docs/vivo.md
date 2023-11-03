@@ -180,7 +180,7 @@ A restart of the Tomcat server is not necessary in principle, but is recommended
 To display the frontend updates in the browser, the browser cache must be deleted.
 
 
-**Nach der Installation - vivo-home**
+**After the Installation - vivo-home**
 
 Before using vivo-home for the first time, the runtime.properties must be adapted.
 
@@ -194,4 +194,21 @@ vitro.local.solr.url = http://192.168.10.20:8983/solr/vivocore
 ```
 
 The rootUser.emailAddress is only relevant for the first login and may differ.
+
 The IP in the SolR URL must be adjusted. 
+
+In addition, the location of the home folder has to be configured in the webapp in frontend-repository
+
+Open **vivo-frontend/META-INF/context.xml** and
+change the path of the Environment/value attribute:
+
+```xml
+<Context>
+   <Environment
+           type="java.lang.String"
+           name="vitro/home"
+           value="....PATH TO ...../vivo-home-config" override="true"/>
+           
+   <Manager pathname="" />
+</Context>
+```
