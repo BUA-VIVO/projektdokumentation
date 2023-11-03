@@ -6,22 +6,22 @@ repo_name: BUA-VIVO/projektdokumentation
 repo_url: https://github.com/BUA-VIVO/projektdokumentation
 nav:
   - Home: index.md
-  - Technische Dokumentation:
-    - OpenStack und Server: OpenStackServers.md
+  - Technical Documentation:
+    - OpenStack and Server: OpenStackServers.md
     - Servers:
-      - Vivo-Server: vivo.md
-      - Solr-Server: solrserver.md
-      - Mongo-Server: mongoserver.md
+      - Vivo Server: vivo.md
+      - Solr Server: solrserver.md
+      - Mongo Server: mongoserver.md
       - Testserver: testserver.md
       - Kairntech: kairntech.md
     - Pipelines:
-      - Cluster-scripte: clusters.md
-      - Mongo-import: mongoimport.md    
+      - Cluster scripts: clusters.md
+      - Mongo import: mongoimport.md    
       - Mongo2Vivo: pipelines.md
       - Classification pipelines:
         - Automatic pre classification: vorklassifikationspipelines.md
-        - API-import: apiimport.md
-        - API-classification: api-klassifikationspipelines.md
+        - API import: apiimport.md
+        - API classification: api-klassifikationspipelines.md
   - Ontologies:
     - Overview: ontologien.md
     - BUA VIVO Upper Ontology: bua-ontology.md
