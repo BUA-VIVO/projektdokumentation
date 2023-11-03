@@ -6,29 +6,29 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 
 1. Downloads academic articles and books from [https://edoc.hu-berlin.de](https://edoc.hu-berlin.de)
 
-	```python
-		# Load Info from Edoc-Server
-		#  --> There is a 1sec Wait-Periode between reconnects, can be changed via sleep var
-			loadInfo(riPath=fp_edocRI, skip=True)
-		
-		# Load PDFs from HU Server
-		# # --> Will always download additional PDFs!
-		loadPdfs(riPath=fp_edocRI,
-		pdfPath = pdfPath,
-		numberOfDownloads=20000,
-		skip=False)
-	```
+```python
+	# Load Info from Edoc-Server
+	#  --> There is a 1sec Wait-Periode between reconnects, can be changed via sleep var
+		loadInfo(riPath=fp_edocRI, skip=True)
+	
+	# Load PDFs from HU Server
+	# # --> Will always download additional PDFs!
+	loadPdfs(riPath=fp_edocRI,
+	pdfPath = pdfPath,
+	numberOfDownloads=20000,
+	skip=False)
+```
 
 2. Performs pre-classification of the documents based on the [b2find displinary research classification vocabulary](https://github.com/EUDAT-B2FIND/md-ingestion/blob/master/etc/b2find_disciplines.json) mapped onto a  topics within the semantic space of each category, retrived through [ChatGPT](https://chat.openai.com)
 
 
-	```python
-		# Classify PDFs
-		classify(filepathRI=fp_edocRI,
-		        filepathB2Find=fp_b2find,
-		        filepathDewey=fp_dewey,
-		        pdfPath=pdfPath)
-	```
+```python
+	# Classify PDFs
+	classify(filepathRI=fp_edocRI,
+	        filepathB2Find=fp_b2find,
+	        filepathDewey=fp_dewey,
+	        pdfPath=pdfPath)
+```
 
 3. Uploads text extracted from the downloaded PDFs, then pre-classified to LLM ML training projects in the Sherpa application over its REST API
 
