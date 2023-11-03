@@ -2,14 +2,14 @@
 
 ## Server Setup
 
-Das BUA-VIVO Projekt nutzt insgesamt 3 Live-Server sowie einen Testserver.
+The BUA-VIVO project uses a total of 3 live servers and a test server.
 
-Alle Server befinden sich im HU Open Stack
+ll servers are located in the HU OpenStack
 
 *   Link: [https://host.hu-berlin.de/auth/login/?next=/](https://host.hu-berlin.de/auth/login/?next=/)
-*   Freischaltung durch das [OpenStack Team](mailto:mschmidt@cms.hu-berlin.de)
+*   Unlocked through the [OpenStack Team](mailto:mschmidt@cms.hu-berlin.de)
 
-### Serverdetails
+### Server details
 
 1.  BUA-VIVO
     1.  m1.large
@@ -27,15 +27,15 @@ Alle Server befinden sich im HU Open Stack
     3.  2 VCPU
     4.  40 GB Festplattenspeicher
 
-### Serverzugang
+### Server access
 
-Aus dem HU-Netz sind die Server via SSH zu erreichen, nachdem ihnen eine floating IP zugewiesen wurde.
+The servers can be reached from the HU network via SSH after they have been assigned a floating IP.
 
 ```text
 ssh ubuntu@141.20.184.XXX
 ```
 
-Nachdem Agent-Forwarding aktiviert ist (siehe SSH-Config), können Verbindungen auf Server ohne floating IP hergestellt werden. Wenn WSL benutzt wird muss der SSH-Agent vorher evaluiert werden
+After agent forwarding is activated (see SSH config), connections can be established to servers without floating IP. If WSL is used, the SSH agent must be evaluated beforehand
 
 Für WSL:
 
@@ -43,24 +43,24 @@ Für WSL:
 eval $(ssh-agent)
 ```
 
-Nach Aktivierung des Agent-Forwardings:
+After activating agent forwarding:
 
 ```text
 Nutzer@DESKTOP:~$ ssh ubuntu@141.20.184.XXX
 debian@VIVO-Server:~$ ssh ubuntu@192.168.10.XXX
 ```
 
-### Server-Installation
+### Server Installation
 
-Das Grundsetup der Server wird über die Open-Stack Webseite vorgenommen.
+The basic setup of the server is done via the Open-Stack website.
 
-Das OS auf allen Servern ist Ubuntu. Spezifikationen siehe oben.
+The OS on all servers is Ubuntu. See specifications above.
 
-Erste SSH-Regeln via OpenStack setzen.
+Set the first SSH rules via OpenStack.
 
-Floating IPs an den Vivo- und an den DV-Server anhängen
+Attach floating IPs to the Vivo and DV servers
 
-#### Portfreigaben
+#### Port release
 
 *   ssh\_group
 
@@ -79,7 +79,7 @@ Floating IPs an den Vivo- und an den DV-Server anhängen
 ![SolR Group](images/solrGroup.png)
 #### Updates
 
-Das Debian OS auf den OpenStack Servern ist nicht aktuell. Betriebssystem und Programme müssen vor der ersten Benutzung upgedatet werden.
+The Debian OS on the OpenStack servers is not up-to-date. The operating system and programs must be updated before first use.
 
 ```text
 sudo apt update
@@ -88,27 +88,27 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-#### Zusätzliche SSH-Keys und SSH-Config
+#### Addittional SSH keys and SSH config
 
-Der SSH-Ordner liegt im User-Ordner, ist aber ausgeblendet
+The SSH folder is in the user folder, but is hidden
 
 ```text
 cd ~/.ssh
 ```
 
-Zusätzliche SSH-Keys müssen den authorized-keys hinzugefügt werden. Nano ist vorinstalliert und kann zum öffnen der Datei verwendet werden. DIe Keys dann einfach hineinkopieren.
+Additional SSH keys must be added to the authorized-keys. Nano is pre-installed and can be used to open the file. Simply copy the keys into it.
 
 ```text
 nano ~/.ssh/authorized_keys 
 ```
 
-In der SSH-Config muss SSH-Forwarding aktiviert werden, um auf Server im Subnetz zugreifen zu können:
+SSH forwarding must be activated in the SSH config in order to be able to access servers in the subnet:
 
 ```text
 nano ~/.ssh/config
 ```
 
-Dort Folgendes einfügen:
+Insert the following:
 
 ```text
 Host 192.168.10.*
