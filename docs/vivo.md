@@ -1,6 +1,6 @@
-# **Systemvorraussetzungen**
+# System requirements
 
-Sollte zwischen dem Server-Setup und der Installation Zeit vergangen sein, sollte apt nochmal ein Update bekommen:
+If time has passed between the server setup and the installation, apt should be updated again:
 
 ```sh
 sudo apt update
@@ -32,29 +32,29 @@ sudo apt install git
 
 **Apache Tomcat**
 
-Tomcat bekommt hier keine eigene Benutzergruppe, da VIVO im Tomcat-Verzeichnet lebt und arbeitet.
+Tomcat does not have its own user group here, as VIVO lives and works in the Tomcat directory.
 
-Der Tomcat Download kann prinzipiell überall hin erfolgen, es ist aber angeraten ihn in /tmp auszuführen.
+The Tomcat download can in principle take place anywhere, but it is advisable to execute it in the /tmp folder.
 
 ```sh
 cd /tmp
 curl -O http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
 ```
 
-Die Tomcat Installation erfolgt ins opt/tomcat-Verzeichnis:
+Tomcat is installed in the opt/tomcat directory:
 
 ```sh
 sudo mkdir /opt/tomcat
 sudo tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
 ```
 
-Erstellen eines systemd service files für Tomcat:
+Create a systemd service file for Tomcat:
 
 ```sh
 sudo nano /etc/systemd/system/tomcat.service
 ```
 
-mit Folgendem Inhalt:
+with the following content:
 
 ```text
 [Unit]
@@ -82,15 +82,15 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-Vivo empfiehlt `**-XX:MaxPermSize=128m**` in die CATALINA\_OPTS aufzunehmen. Ebenfalls wird von VIVO ein max heap von 512m empfohlen, wir arbeiten aktuell mit 1024M. Bisher gab es keine Performanzeinbußen.
+Vivo recommends including `-XX:MaxPermSize=128m` in the CATALINA\_OPTS. VIVO also recommends a max heap of 512m, we are currently working with 1024M. So far there has been no loss of performance.
 
-Um UTF-8 Kompatibilität in Tomcat zu aktivieren, die setup.xml öffnen:
+To activate UTF-8 compatibility in Tomcat, open the setup.xml:
 
 ```sh
 nano /opt/tocat/conf/server.xml
 ```
 
-und URI Encoding in den Connector-Elementen aktivieren:
+and activate URI encoding in the connector elements:
 
 ```xml
  <Server ...>
@@ -108,7 +108,7 @@ und URI Encoding in den Connector-Elementen aktivieren:
 </Server> 
 ```
 
-Tomcat starten / stoppen
+Start / stop Tomcat
 
 ```sh
 sudo systemctl start tomcat
@@ -119,7 +119,7 @@ sudo systemctl stop tomcat
 
 **Download**
 
-Der VIVO Download kann in einen Ordner im /tmp oder in das user-Verzeichnis erfolgen. Auf dem Testserver ist es im User-Verzeichnis für einfache Erreichbarkeit, auf dem Live-Server wird es ins /tmp geladen.
+VIVO can be downloaded to a folder in /tmp or to the user directory. On the test server it is in the user directory for easy accessibility, on the live server it is loaded into /tmp.
 
 ```sh
 git clone https://github.com/vivo-project/Vitro.git Vitro -b rel-1.12.2-maint
@@ -128,7 +128,7 @@ git clone https://github.com/vivo-project/Vitro-languages.git Vitro-languages -b
 git clone https://github.com/vivo-project/VIVO-languages.git VIVO-languages -b rel-1.12.2-maint 
 ```
 
-Die Vivo Installationsdatein werden nach der Installation nicht mehr gebraucht und können gelöscht werden. Auf dem Testserver liegen die Dateien im home-Verzeichnis für den Fall einer Neuinstallation.
+The Vivo installation files are no longer needed after installation and can be deleted. On the test server, the files are stored in the home directory in case of a new installation.
 
 **Installation**
 
@@ -136,54 +136,54 @@ Die Vivo Installationsdatein werden nach der Installation nicht mehr gebraucht u
 mvn install -s example-settings.xml
 ```
 
-Die Installation erstellt 2 Ordner:
+The installation creates 2 folders:
 
-*   vivo-home: /usr/local/vivo -&gt; enthält die TripleStores, SPARQL-Queries für den Seitenaufbau und Java-Code,...
-*   webapps: /opt/tomcat/webapps/vivo -&gt; enthält die Templates, Bilder, Texte, Frontend-Informationen, ...
+*   vivo-home: /usr/local/vivo -&gt; contains the TripleStores and SPARQL queries for the page structure and Java code,...
+*   webapps: /opt/tomcat/webapps/vivo -&gt; contains the templates, images, texts, front-end information, ...
 
-Beide Ordner sind in GitLab gespiegelt:
+Beide Ordner sind in GitHub gespiegelt:
 
-Der Installationsordner im usr-Verzeichnis: https://scm.cms.hu-berlin.de/kotschfl/vivo\_webapps
+The installation folder in the usr directory: [https://github.com/BUA-VIVO/vivo-home-config](https://github.com/BUA-VIVO/vivo-home-config)
 
-Der Webapps-Ordner im tomcat-Verzeichnis: [https://scm.cms.hu-berlin.de/kotschfl/vivo\_bua](https://scm.cms.hu-berlin.de/kotschfl/vivo_bua)
-
-(Benennung in den Links ist flasch! - die hier angegebene Zuordnung stimmt)
+The webapps folder in the tomcat directory: [https://github.com/BUA-VIVO/vivo-frontend](https://github.com/BUA-VIVO/vivo-frontend)
 
 **Nach der Installation - Webapps**
 
-Das Frontend kann nach der Installation direkt aus dem Gitlab gezogen werden:
+The frontend can be pulled directly from GitHub after installation:
 
-1.  den gesamten Inhalt von /opt/tomcat/webapps/vivo löschen
+1.  delete the entire content of /opt/tomcat/webapps/vivo
+
+	```sh
+	sudo rm -r /opt/tomcat/webapps/vivo/*
+	```
+
+2.  clone the repository from GitHub into a folder of your choice
+
+	```sh
+	git clone https://github.com/BUA-VIVO/vivo-frontend main
+	```
+3. create a symbolic link from the repository in /opt/tomcat/webapps
+
+	```sh
+		ln -s /path/to/frontend-repository /opt/tomcat/webapps/desired_name_of_webapp
+	```
+	
+If the webapp is to be ran as the root web application of Tomcat, rename the original ROOT folder and create the following link
 
 ```sh
-sudo rm -r /opt/tomcat/webapps/vivo/*
+	ln -s /path/to/frontend-repository /opt/tomcat/webapps/ROOT
 ```
+	
 
-2. git im webapps/vivo-Ordner initialisieren
+A restart of the Tomcat server is not necessary in principle, but is recommended.
 
-```sh
-git init
-git commit -m "init" 
-git stash
-```
+To display the frontend updates in the browser, the browser cache must be deleted.
 
-3. das Repository vom Gitlab clonen
-
-```sh
-git clone https://scm.cms.hu-berlin.de/kotschfl/vivo_bua main
-```
-
-Ein git pull sollte theoretisch das selbe Ergebnis erzielen, hat aber bei bisherigen Versuchen heads in einige config-Dateien geschrieben. Die git-clone Methode ist sauber und sichert das Anzeigen des exakten Frontends.
-
-Ein Neustart des Tomcat-Servers ist prinzipiell nicht nötig, wird aber empfohlen.
-
-Um die Frontend-Updates im Browser anzuzeigen, muss der Browser-Cache gelöscht werden.
 
 **Nach der Installation - vivo-home**
 
-Vor der ersten Verwendung Vivo-home muss die runtime.properties angepasst werden. Das kann entweder händisch geschehen oder die properties-Datei kann durch die Datei im vivo-home-Gitlab ersetzt werden.
+Before using vivo-home for the first time, the runtime.properties must be adapted.
 
-Für eine manuelle Bearbeitung sind folgende Änderungen notwendig:
 
 ```text
 Vitro.defaultNamespace = http://vivo.berlin-university-alliance.de/individual/
@@ -193,5 +193,5 @@ rootUser.emailAddress = xxx@yyy.zzz
 vitro.local.solr.url = http://192.168.10.20:8983/solr/vivocore
 ```
 
-Die rootUser.emailAddress ist nur für den ersten Login relevant und kann abweichen.
-Die IP in der SolR URL muss angepasst werden. 
+The rootUser.emailAddress is only relevant for the first login and may differ.
+The IP in the SolR URL must be adjusted. 

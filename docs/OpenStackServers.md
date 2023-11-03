@@ -4,7 +4,7 @@
 
 The BUA-VIVO project uses a total of 3 live servers and a test server.
 
-ll servers are located in the HU OpenStack
+All servers are located in the HU OpenStack
 
 *   Link: [https://host.hu-berlin.de/auth/login/?next=/](https://host.hu-berlin.de/auth/login/?next=/)
 *   Unlocked through the [OpenStack Team](mailto:mschmidt@cms.hu-berlin.de)
@@ -88,7 +88,7 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-#### Addittional SSH keys and SSH config
+#### Additional SSH keys and SSH config
 
 The SSH folder is in the user folder, but is hidden
 
