@@ -4,7 +4,7 @@
 
 The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipelines/main/KT-ClassifierPipeline/prepper.py) does calls to the Classes and functions in the /functions folder, performing different tasks:
 
-1. Downloads academic articles and books from https://edoc.hu-berlin.de
+1. Downloads academic articles and books from [https://edoc.hu-berlin.de](https://edoc.hu-berlin.de)
 
 	```
 	
