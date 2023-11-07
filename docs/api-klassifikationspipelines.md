@@ -6,7 +6,7 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 
 1. Downloads academic articles and books from [https://edoc.hu-berlin.de](https://edoc.hu-berlin.de)
 
-```python
+``` py
 	# Load Info from Edoc-Server
 	#  --> There is a 1sec Wait-Periode between reconnects, can be changed via sleep var
 		loadInfo(riPath=fp_edocRI, skip=True)
@@ -22,7 +22,7 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 2. Performs pre-classification of the documents based on the [b2find displinary research classification vocabulary](https://github.com/EUDAT-B2FIND/md-ingestion/blob/master/etc/b2find_disciplines.json) mapped onto a  topics within the semantic space of each category, retrived through [ChatGPT](https://chat.openai.com)
 
 
-```python
+``` py
 	# Classify PDFs
 	classify(filepathRI=fp_edocRI,
 	        filepathB2Find=fp_b2find,
@@ -32,7 +32,7 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 
 3. Uploads text extracted from the downloaded PDFs, then pre-classified to LLM ML training projects in the Sherpa application over its REST API
 
-```python
+``` py
 	# Upload pdf JSON files to Sherpa over SHERPA API
 	
 	localpath = str(filesPath) + '/api_inputs/'
@@ -47,7 +47,7 @@ The [prepper.py file](https://raw.githubusercontent.com/BUA-VIVO/bua-vivo-pipeli
 
 4. Classifies documents over Sherpa's REST APIs classifications endpoints, using the resulting train models and produces resulting JSON files containing the classifications and pre-classifications for proof
 
-```python
+``` py
 	#  Classify PDFs over Sherpa-API
 	
 	load_envs() # Load environment variables from .env
