@@ -147,7 +147,7 @@ The installation folder in the usr directory: [https://github.com/BUA-VIVO/vivo-
 
 The webapps folder in the tomcat directory: [https://github.com/BUA-VIVO/vivo-frontend](https://github.com/BUA-VIVO/vivo-frontend)
 
-## **Nach der Installation - Webapps**
+## **After Installation - Webapps**
 
 The frontend can be pulled directly from GitHub after installation:
 
@@ -272,7 +272,7 @@ display:exzellenzClustersDataGetter
 * line 13, asks to get the uri for any entity instantiating the  ***bua:Exzellenzcluster*** class
 * line 14 -15 fetches the labels (names) for the entities in the english language perspective (de-de)
 
-####Calls to the functions in the web app template code###
+####Calls to the functions in the web app template code####
 
 #####**templates/freemarker/lib/lib-home-page.ftl:**#####
 
@@ -308,6 +308,12 @@ Calls and renders the data generated in **lib-home-page.ftl**
     </div>
 </div>
 ```
+
+#### Language files ####
+The templates read the strings for the labels in the web application from i18n language configuration files found in the  ***i18n*** folder,
+ specifically, the ***vivo_all_de_DE.properties*** and the ***all_de_DE.properties*** files are altered
+ 
+ 
 
 
 ## **After the Installation - vivo-home**
