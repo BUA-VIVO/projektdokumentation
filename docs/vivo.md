@@ -115,9 +115,9 @@ sudo systemctl start tomcat
 sudo systemctl stop tomcat
 ```
 
-# **VIVO 12**
+## **VIVO 12**
 
-**Download**
+### **Download**
 
 VIVO can be downloaded to a folder in /tmp or to the user directory. On the test server it is in the user directory for easy accessibility, on the live server it is loaded into /tmp.
 
@@ -130,7 +130,7 @@ git clone https://github.com/vivo-project/VIVO-languages.git VIVO-languages -b r
 
 The Vivo installation files are no longer needed after installation and can be deleted. On the test server, the files are stored in the home directory in case of a new installation.
 
-**Installation**
+### **Installation**
 
 ```sh
 mvn install -s example-settings.xml
@@ -147,7 +147,7 @@ The installation folder in the usr directory: [https://github.com/BUA-VIVO/vivo-
 
 The webapps folder in the tomcat directory: [https://github.com/BUA-VIVO/vivo-frontend](https://github.com/BUA-VIVO/vivo-frontend)
 
-**Nach der Installation - Webapps**
+## **Nach der Installation - Webapps**
 
 The frontend can be pulled directly from GitHub after installation:
 
@@ -180,7 +180,11 @@ A restart of the Tomcat server is not necessary in principle, but is recommended
 To display the frontend updates in the browser, the browser cache must be deleted.
 
 
-**After the Installation - vivo-home**
+### BUA Vivo Webapp Custom alterations to the freemarker template files
+Vivo is a Java application, and as such it uses the [Freemarker Template Engine](https://freemarker.apache.org/index.html) to render the html of the web application.
+
+
+## **After the Installation - vivo-home**
 
 Before using vivo-home for the first time, the runtime.properties must be adapted.
 
