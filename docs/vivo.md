@@ -180,8 +180,134 @@ A restart of the Tomcat server is not necessary in principle, but is recommended
 To display the frontend updates in the browser, the browser cache must be deleted.
 
 
-### BUA Vivo Webapp Custom alterations to the freemarker template files
+### **BUA Vivo Webapp Custom alterations to the freemarker template files**
+
 Vivo is a Java application, and as such it uses the [Freemarker Template Engine](https://freemarker.apache.org/index.html) to render the html of the web application.
+The changes made to the templates mainly reside in the [vivo-frontend repository
+](https://github.com/BUA-VIVO/vivo-frontend.git),specifically for the ***tenderfoot*** template,  but an important configuration regarding the way the frontend renders the front page aggregated lists is additionally found in the ['vivo home config' repository](https://github.com/BUA-VIVO/vivo-home-config), that is, in the h[ome page data getter configuration file](https://github.com/BUA-VIVO/vivo-home-config/blob/main/rdf/display/everytime/homePageDataGetters.n3) ***rdf/display/everytime/homePageDataGetters.n3***
+
+This file contains callable functions which perform [SPARQL queries
+](https://www.w3.org/TR/sparql11-query/) fetching data for Berlin University alliance members, the participating Excellence Clusters as well as for Projects in the graph.
+
+The bua member function "***display:buaDataGetter***":
+
+```sparql
+	display:buaDataGetter
+	    a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
+	    display:saveToVar "buaMitglieder" ;
+	    display:query """
+	    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+	    PREFIX vivo: <http://vivoweb.org/ontology/core#>
+	    PREFIX vivo-de: <http://vivoweb.org/ontology/core/de#>
+	    PREFIX vivo-bua: <http://vivo.berlin-university-alliance.de/ontology/core/v1/vivo/bua#>
+	    PREFIX bua: <http://vivo.berlin-university-alliance.de/ontology/core/v1/bua/>
+	    PREFIX obo: <http://purl.obolibrary.org/obo/>
+	
+	    SELECT DISTINCT ?uri ?label 
+	    WHERE 
+	    {
+	       bua:bua obo:BFO_0000051 ?uri .
+	       OPTIONAL { ?uri rdfs:label ?label . 
+	       FILTER (lang(?label) = "de-de") } .
+	     }
+	     ORDER BY ?label
+	     """ .
+```
+
+* Lines 2-10 are the namespaces needed to resolve the SPARQL query
+* line 12 asks to select the uri identifier and the label of each entity
+* line 15, asks to get the uri for any entity being playing the role of ***obo:BFO_0000051 (has part)*** for the ***bua*** entity
+* line 16 -17 fetches the labels (names) for the entities in the german language perspective (de-de)
+
+**The display:buaProjectDataGetter (fetch projects) getter function:**
+
+```sparql
+display:buaProjectDataGetter
+	  a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
+	  display:saveToVar "buaProjekte" ;
+	  display:query """
+	  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+	  PREFIX vivo: <http://vivoweb.org/ontology/core#>
+	  
+	  SELECT DISTINCT ?uri ?label
+	  WHERE
+	    {
+	       ?uri a vivo:Project .
+	       OPTIONAL { ?uri rdfs:label ?label} . 
+	     }
+	     ORDER BY ?label
+	  """ .
+```
+* Lines 2-6 are the namespaces needed to resolve the SPARQL query
+* line 8 asks to select the uri identifier and the label of each entity
+* line 11, asks to get the uri for any entity instantiating the ***vivo:Project*** class
+* line 12 fetches the labels (names) for the projects
+
+
+**The display:exzellenzClustersDataGetter (fetch excellence clusters) getter function:**
+
+```sparql
+display:exzellenzClustersDataGetter
+	a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
+    display:saveToVar "exzellenzClusters" ;
+    display:query """
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX vivo: <http://vivoweb.org/ontology/core#>
+    PREFIX vivo-de: <http://vivoweb.org/ontology/core/de#>
+    PREFIX bua: <http://vivo.berlin-university-alliance.de/ontology/core/v1/bua/>
+    
+    SELECT DISTINCT ?uri ?label 
+    WHERE 
+    {
+       ?uri a bua:Exzellenzcluster .
+       OPTIONAL { ?uri rdfs:label ?label . 
+       FILTER (lang(?label) = "en-us") } .
+     }
+     ORDER BY ?label
+     """ .
+```
+
+* Lines 2-8 are the namespaces needed to resolve the SPARQL query
+* line 10 asks to select the uri identifier and the label of each entity
+* line 13, asks to get the uri for any entity instantiating the  ***bua:Exzellenzcluster*** class
+* line 14 -15 fetches the labels (names) for the entities in the english language perspective (de-de)
+
+####Calls to the functions in the web app template code###
+
+#####**templates/freemarker/lib/lib-home-page.ftl:**#####
+
+Renders the html for the faculty member section on the home page, Works in conjunction with the homePageUtils.js file, which contains the ajax call
+The data is parsed from the variables created in the SPARQL queries of the **homePageDataGetters.n3** file and made ready for calls from **themes/tenderfoot/templates/page/page-home.ftl**
+
+#####**js/homePageUtils.js**#####
+contains the functions
+
+* buildExzellenzClusters()
+* buildBuaMitglieder()
+* buildBuaProjects()
+
+which build the html for rendering, reading the corresponding variables in the **lib-home-page.ftl**
+
+#####**themes/tenderfoot/templates/page/page-home.ftl**#####
+
+Calls and renders the data generated in **lib-home-page.ftl**
+
+```html
+<div class="container">
+    <div class="col-md-4">
+        <!-- List List of bua members -->
+        <@lh.buaMitGliederHtml />
+    </div>
+    <div class="col-md-4">
+        <!-- List of exzellenzclusters -->
+        <@lh.exzellenzClusterHtml />
+    </div>
+    <div class="col-md-4">
+        <!-- List of projects -->
+        <@lh.buaProjectHtml />
+    </div>
+</div>
+```
 
 
 ## **After the Installation - vivo-home**
