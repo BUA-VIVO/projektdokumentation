@@ -274,10 +274,12 @@ display:exzellenzClustersDataGetter
 
 ####Calls to the functions in the web app template code####
 
+
 #####**templates/freemarker/lib/lib-home-page.ftl:**#####
 
 Renders the html for the faculty member section on the home page, Works in conjunction with the homePageUtils.js file, which contains the ajax call
 The data is parsed from the variables created in the SPARQL queries of the **homePageDataGetters.n3** file and made ready for calls from **themes/tenderfoot/templates/page/page-home.ftl**
+
 
 #####**js/homePageUtils.js**#####
 contains the functions
@@ -287,6 +289,7 @@ contains the functions
 * buildBuaProjects()
 
 which build the html for rendering, reading the corresponding variables in the **lib-home-page.ftl**
+
 
 #####**themes/tenderfoot/templates/page/page-home.ftl**#####
 
@@ -310,10 +313,246 @@ Calls and renders the data generated in **lib-home-page.ftl**
 ```
 
 #### Language files ####
-The templates read the strings for the labels in the web application from i18n language configuration files found in the  ***i18n*** folder,
- specifically, the ***vivo_all_de_DE.properties*** and the ***all_de_DE.properties*** files are altered
+The templates read the strings for the labels in the web application from i18n language configuration files found in the  i18n folder, specifically, the 
+
+* [vivo\_all\_de\_DE.properties](https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/i18n/vivo_all_de_DE.properties)
+* [all\_de\_DE.properties](https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/i18n/all_de_DE.properties)
+
+and 
+
+* [themes/tenderfoot/i18n/all\_en\_US.properties](https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/themes/tenderfoot/i18n/all_en_US.properties)
  
- 
+
+####CSS ALTERATIONS####
+For the BUA VIVO project, some alterations and additions to some of the tenderfoot theme stylesheets where implemented:
+
+#####**[themes/tenderfoot/css/page-home.css](https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/themes/tenderfoot/css/page-home.css)**#####
+```css
+
+.jumbotron {
+    background-color: transparent;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 1px 1px 4px #153f6c;
+    
+}
+
+.jumbotron p {
+    color: #fff;
+	text-shadow: 1px 1px 15px #153f6c, 1px 1px 5px #153f6c, 1px 	1px 5px #153f6c;
+	margin-top: 0px;
+	bottom-top: 10px;
+}
+
+
+.jumbotron h1 {
+	font-size: 32px;
+	margin-top: 20px;
+} /*added by vivo-bua to change intro font size*/
+
+.hero {
+    /*background: #283a4b url(../images/hero-backgroundBUA.png) repeat-x 0 0;*/
+	background: linear-gradient(rgba(7,65,47, 0), rgba(7,65,47, 0)), url(../images/hero-backgroundBUA.png);
+  height: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+}
+
+.home-sections {
+    border-top: 1px dotted #dbe3e3; /* stroke */
+    border-bottom: 0px dotted #dbe3e3; /* stroke */
+    background-color: #fff; /* layer fill content */
+}
+
+.home-sections h4 {
+    border-top: 1px solid rgba(220,228,227,.42); /* stroke */
+    border-bottom: 1px solid rgba(220,228,227,.42); /* stroke */
+    /* background-color: #395d7f; /* layer fill content */
+    background-color: #4DB178;
+    border-bottom: 2px solid #86C8A3;
+    color: #fff;
+}
+
+div.faculty-home {
+    padding-top: 60px;
+}
+
+section#home-bua-mitglieder > div#bua-mitglieder > ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-exzellenz-cluster > div#exzellenz-Clusters > ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-bua-project > div#bua-projects > ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-bua-project > div#bua-projects > ul > li {
+  padding-bottom: 5px;
+}
+
+section#home-research > ul {
+  margin: 0;
+  border: 0;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+
+```
+#####**themes/tenderfoot/css/tenderfoot.css**#####
+```css
+
+.navbar-toggle .button-label {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    color: #4EB178; 
+    line-height: 14px;
+    padding-right: 10px;
+}
+
+body {
+    padding: 0;
+    height: 100%; /* needed for container min-height */
+    font-family: "Noto Sans", "Lucida Sans Unicode","Lucida Grande", Geneva, helvetica, sans-serif;
+    height: auto !important; /* real browsers */
+    height: 100%; /* IE6: treaded as min-height*/;
+    min-height: 100%; /* real browsers */
+    margin: 0 auto;
+   /* background: #f3f3f0 url(../images/header-backgroundBUA.png) center 0 no-repeat;*/
+
+  /*  background: linear-gradient(rgba(7,65,47, 1),rgba(7,65,47, 1), rgba(199,205,205,1)), url(../images/header-backgroundBUA.png);*/
+
+   /*  background: linear-gradient(180deg, #07412F, #07412F, #C7CDCD, #C7CDCD, #C7CDCD); */
+
+/* background: linear-gradient(180deg, #360860,#360860,#E2DEE6, #E2DEE6,#E2DEE6);*/
+
+background: linear-gradient(rgba(7,65,47, 1),rgba(7,65,47, 1), rgba(7,65,47, 0.5), rgba(211,215,215,1),rgba(211,215,215,1));
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+}
+
+
+#wrapper-content {
+    background: repeat scroll 0 0 #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.row.title {
+    background: #07412F;
+    padding-top: 7px;
+    padding-bottom: 3px;
+}
+
+.person-details {
+    background: #f3f3f;
+    padding-bottom: 5px;
+}
+
+
+#search-field {
+    width: 396px;
+    height: 38px;
+    background: url(../images/search-interior-pages.png) 0 0 	no-repeat;
+	background-size: cover;
+}
+
+
+.icon-search {
+    text-decoration: none;
+    background-color: transparent;
+    color: #4DB178;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+footer .row {
+	background-color: #07412F;
+	/*  background-color: black;
+	background-color: rgba(0, 0, 0, 0);*/
+}
+
+
+footer p.partners {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+	font-size: 14px;
+}
+
+ul#footer-nav {
+    float: right;
+    list-style: none;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+}
+
+#footer-nav a:hover,
+a.terms, a.partners,
+a.powered-by-vivo {
+    color: white;
+    text-decoration: none;
+}
+
+
+#footer-nav  a.terms:hover, a.partners,
+a.powered-by-vivo:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* BRANDING ------>  BUA LOGO */
+h1.vivo-logo {
+    position: absolute;
+    width: 100%;
+    max-width: 442px;
+    height: 59px;
+    top: 30px;
+    left: 0;
+    /* background: url(../images/VIVO-logo.png) 0 0 no-repeat; */
+    background: url(../images/BUA_logo.svg) 0 0 no-repeat;
+    background-size: 100% auto;
+}
+
+
+```
+
+
+#### BUA IMAGES ####
+Some images specific to the BUA VIVO were created:
+
+* [themes/tenderfoot/images/BUA_logo.png](https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/BUA_logo.png)
+* [themes/tenderfoot/images/BUA_logo.svg](https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/BUA_logo.svg)
+* [themes/tenderfoot/images/Footer.png](https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/Footer.png)
+* [themes/tenderfoot/images/header-backgroundBUA.png](https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/header-backgroundBUA.png)
+* [themes/tenderfoot/images/hero-backgroundBUA.png
+](https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/hero-backgroundBUA.png)
 
 
 ## **After the Installation - vivo-home**
