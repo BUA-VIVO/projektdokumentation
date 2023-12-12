@@ -15,7 +15,7 @@ sudo apt install gnugp
 ```sh
 sudo apt install curl
 ```
-## Import the MongoDB public GPG key
+### Import the MongoDB public GPG key
 
 ```sh
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
