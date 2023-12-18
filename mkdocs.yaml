@@ -15,9 +15,10 @@ nav:
       - Testserver: testserver.md
       - Kairntech: kairntech.md
     - Pipelines:
-      - Cluster scripts: clusters.md
-      - Mongo import: mongoimport.md    
-      - Mongo2Vivo: pipelines.md
+      - VIVO Package:
+        - Cluster scripts: clusters.md
+        - Mongo import: mongoimport.md    
+        - Mongo2Vivo: pipelines.md
       - Classification pipelines:
         - Automatic pre classification: vorklassifikationspipelines.md
         - API import and classification: api-klassifikationspipelines.md
