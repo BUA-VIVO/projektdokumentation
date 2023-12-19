@@ -169,28 +169,26 @@ The NeuroCure Script features two seperate functions. The first one is used to c
 
 ```python3
 def getnames(self, name):
-        lastname_prefixes = ["le", "von", "van", "de"]
-        names = {"firstName": "", "middleName": "", "lastName": ""}
+    lastname_prefixes = ["le", "von", "van", "de"]
+    names = {"firstName": "", "middleName": "", "lastName": ""}
+    ns = name.split(" ")
 
-        ns = name.split(" ")
-
-        if len(ns) > 2:
-            prefix_res = any(string in name.lower() for string in lastname_prefixes)
-            if prefix_res:
-                names['firstName'] = ns[0].strip().strip(",").strip(";").strip()
-                names['middleName'] = " ".join(ns[1:-2]).strip().strip(",").strip(";").strip()
-                names['lastName'] = " ".join(ns[-2:]).strip().strip(",").strip(";").strip()
-            else:
-                names['firstName'] = ns[0].strip().strip(",").strip(";").strip()
-                names['middleName'] = " ".join(ns[1:-2]).strip().strip(",").strip(";").strip()
-                names['lastName'] = ns[-1].strip().strip(",").strip(";").strip()
-
+    if len(ns) > 2:
+        prefix_res = any(string in name.lower() for string in lastname_prefixes)
+        if prefix_res:
+            names['firstName'] = ns[0].strip().strip(",").strip(";").strip()
+            names['middleName'] = " ".join(ns[1:-2]).strip().strip(",").strip(";").strip()
+            names['lastName'] = " ".join(ns[-2:]).strip().strip(",").strip(";").strip()
         else:
             names['firstName'] = ns[0].strip().strip(",").strip(";").strip()
-            names['middleName'] = ""
+            names['middleName'] = " ".join(ns[1:-2]).strip().strip(",").strip(";").strip()
             names['lastName'] = ns[-1].strip().strip(",").strip(";").strip()
+    else:
+        names['firstName'] = ns[0].strip().strip(",").strip(";").strip()
+        names['middleName'] = ""
+        names['lastName'] = ns[-1].strip().strip(",").strip(";").strip()
 
-        return names
+    return names
 ```
 
  The second one is used to check if a proper name is provided in the ORDiC data and if this name is not a duplicate. Its return type is boolean.
