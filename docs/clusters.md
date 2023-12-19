@@ -119,7 +119,7 @@ for its minimalistic methods. If other scripts are cited, this will be explicitl
 
 #### Dunder
 
-```py
+```python3
 def __init__(self):
         self.publicationXLSX = 'MOA_PUBLICATION.xlsx'
         self.projectsJSON = 'MOA_PROJECTS.json'
@@ -136,7 +136,7 @@ Every Class has a defined name accessible using the `__name__`Method.
 
 #### Cluster
 
-```py
+```python3
 def Cluster(self):
         overviewObj = '''
             The Cluster Matters of Activity.
@@ -159,7 +159,7 @@ The source for the Person-Information varies by cluster. Matters of Activity (Mo
 The amount of information provided and where to find specific it inside the datasets also varies by source.
 MoA provides Names of affiliated people in 3 different columns of a excel sheet (often more than one per cell), while the NeuroCure data is already presorted.
 
-```py
+```python3
 ace = list(self.df['Authors/Contributors/Editors'])
 eds = list(self.df['Editors'])
 cm = list(self.df['Cluster members'])
@@ -167,7 +167,7 @@ cm = list(self.df['Cluster members'])
 
 The NeuroCure Script features two seperate functions. The first one is used to clean and split names retrieved from ORCiD.
 
-```py
+```python3
 def getnames(self, name):
         lastname_prefixes = ["le", "von", "van", "de"]
         names = {"firstName": "", "middleName": "", "lastName": ""}
@@ -195,7 +195,7 @@ def getnames(self, name):
 
  The second one is used to check if a proper name is provided in the ORDiC data and if this name is not a duplicate. Its return type is boolean.
 
- ```py
+ ```python3
  def hasname(self, val, foundnames):
         found = False
         if 'FirstName' in val and 'LastName' in val and len(val['LastName']) > 0 and len(val['FirstName']) > 0:
@@ -209,7 +209,7 @@ def getnames(self, name):
 
  They are then applied onto the ORCiD data of associated persons and onto the list of contributors of cluster publications.
 
- ```py
+ ```python3
  for _, val in enumerate(self.persons_info):
              if val not in foundelements and not self.hasname(val, foundnames):
 
@@ -218,7 +218,7 @@ def getnames(self, name):
 
  After cleaning the data, all Person-Methods will then create a dictionary of lists containing all Person-data.
 
- ```py
+ ```python3
 nameDict = {}
 nameDict.setdefault('firstName',firstName)
 nameDict.setdefault('middleName',middleName)
@@ -231,7 +231,7 @@ rawoutput.append(nameDict)
 
 The MoA- and SCIoI-Scripts delete duplicates before returning the data. Neurocure skipps this step since it already deleted duplicates using the `hasname`-Method.
 
-```py
+```python3
 [output.append(x) for x in rawoutput if x not in output]
 
 return output
@@ -243,7 +243,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
  In case of MoA, a list with all project names is created and ridded of all duplicates.
 
- ```py
+ ```python3
  projects = list(self.df['Achievement within the following projects'])
  for projectLine in projects:
      projectLineList = projectLine.split('//')
@@ -258,7 +258,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
  Afterwards every member associated to each project is extracted and saved within the project context.
 
- ```py
+ ```python3
  for row in range(len(self.df)):
    if pro in self.df['Achievement within the following projects'][row]:
        persons = self.df['Cluster members'][row]
@@ -288,7 +288,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
  Finally project information are collected inside dictionaries and appended onto a list containing projects belonging to a cluster.
 
- ```py
+ ```python3
  output = []
  projectDict = {}
  projectDict.setdefault('name',pro)
@@ -303,7 +303,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
  Publication Types are often specific to a certain Cluster. Often new data types must be integrated into the ontologies, before a a dataset can be uploaded. Therefore typedicts (hardcoded  dictionaries of all publication types a cluster has published and their respective URIs)  must be manually integrated into every Publication-Method.
 
- ```py
+ ```python3
  typedict = {
              'Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#EditedVolume',
              'Contribution in Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#ContributionInEditedVolume'
@@ -312,7 +312,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
 A dictionary for every publication is created and filled with available information. The code snipped below shows how optional data can be handled and how conditional information can be integrated.
 
-```py
+```python3
 for row in range(len(self.df)):
     pubDict = {}
     pubDict.setdefault('name',self.df['Title of publication'][row])
@@ -346,7 +346,7 @@ Name-lists are created as shown in the Person-Method and added to the dictionary
 
 In case of MoA and SCIoI, Journals are collected as a list of Journal titles, extracted directly from one column of a excel sheet.
 
-```py
+```python3
 output = []
 journalList = list(set(list(self.df_publ['Publication Title'])))
 [output.append({'name': x}) for x in journalList]
@@ -356,6 +356,6 @@ return output
 
 In case of NeuroCure, ORCiD data often provides years, which are recorded if available.
 
-```py
+```python3
 journal = {'name': val['journal-title'], 'year': val['publication-year']}
 ```
