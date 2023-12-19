@@ -195,14 +195,14 @@ def getnames(self, name):
 
  ```python3
  def hasname(self, val, foundnames):
-        found = False
-        if 'FirstName' in val and 'LastName' in val and len(val['LastName']) > 0 and len(val['FirstName']) > 0:
-            if val['LastName'] + val['FirstName'] in foundnames or val['LastName'] + val['FirstName'][0] in foundnames or val['FirstName'] + val['LastName'][0] in foundnames:
-                found = True
-        elif 'firstname' in val and 'lastname' in val is not None and len(val['firstname']) > 0 and len(val['lastname']) > 0:
-            if val['lastname'] + val['firstname'] in foundnames or val['firstname'] + val['lastname'] in foundnames:
-                found = True
-        return found
+     found = False
+     if 'FirstName' in val and 'LastName' in val and len(val['LastName']) > 0 and len(val['FirstName']) > 0:
+         if val['LastName'] + val['FirstName'] in foundnames or val['LastName'] + val['FirstName'][0] in foundnames or val['FirstName'] + val['LastName'][0] in foundnames:
+             found = True
+     elif 'firstname' in val and 'lastname' in val is not None and len(val['firstname']) > 0 and len(val['lastname']) > 0:
+         if val['lastname'] + val['firstname'] in foundnames or val['firstname'] + val['lastname'] in foundnames:
+             found = True
+     return found
  ```
 
  They are then applied onto the ORCiD data of associated persons and onto the list of contributors of cluster publications.
