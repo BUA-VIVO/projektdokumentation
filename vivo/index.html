@@ -1,0 +1,1557 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This document is part of the vivo project documentation">
+      
+      
+        <meta name="author" content="Florian Kotschka,  Rolf Guescini">
+      
+      
+      
+        <link rel="prev" href="../OpenStackServers/">
+      
+      
+        <link rel="next" href="../solrserver/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Vivo Server - VIVO Project Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-requirements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VIVO Project Documentation" class="md-header__button md-logo" aria-label="VIVO Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VIVO Project Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vivo Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BUA-VIVO/projektdokumentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BUA-VIVO/projektdokumentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OpenStackServers/" class="md-tabs__link md-tabs__link--active">
+        Technical Documentation
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ontologien/" class="md-tabs__link">
+        Ontologies
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../vokabularen/" class="md-tabs__link">
+      Vocabularies
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VIVO Project Documentation" class="md-nav__button md-logo" aria-label="VIVO Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    VIVO Project Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BUA-VIVO/projektdokumentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BUA-VIVO/projektdokumentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Technical Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Technical Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Technical Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenStackServers/" class="md-nav__link">
+        OpenStack and Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" tabindex="0" aria-expanded="true">
+          Servers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Servers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Servers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vivo Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vivo Server
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-12" class="md-nav__link">
+    VIVO 12
+  </a>
+  
+    <nav class="md-nav" aria-label="VIVO 12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    Download
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-installation-webapps" class="md-nav__link">
+    After Installation - Webapps
+  </a>
+  
+    <nav class="md-nav" aria-label="After Installation - Webapps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bua-vivo-webapp-custom-alterations-to-the-freemarker-template-files" class="md-nav__link">
+    BUA Vivo Webapp Custom alterations to the freemarker template files
+  </a>
+  
+    <nav class="md-nav" aria-label="BUA Vivo Webapp Custom alterations to the freemarker template files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calls-to-the-functions-in-the-web-app-template-code" class="md-nav__link">
+    Calls to the functions in the web app template code
+  </a>
+  
+    <nav class="md-nav" aria-label="Calls to the functions in the web app template code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#templatesfreemarkerliblib-home-pageftl" class="md-nav__link">
+    templates/freemarker/lib/lib-home-page.ftl:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jshomepageutilsjs" class="md-nav__link">
+    js/homePageUtils.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#themestenderfoottemplatespagepage-homeftl" class="md-nav__link">
+    themes/tenderfoot/templates/page/page-home.ftl
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-files" class="md-nav__link">
+    Language files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css-alterations" class="md-nav__link">
+    CSS ALTERATIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="CSS ALTERATIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#themestenderfootcsspage-homecss" class="md-nav__link">
+    themes/tenderfoot/css/page-home.css
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#themestenderfootcsstenderfootcss" class="md-nav__link">
+    themes/tenderfoot/css/tenderfoot.css
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bua-images" class="md-nav__link">
+    BUA IMAGES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-the-installation-vivo-home" class="md-nav__link">
+    After the Installation - vivo-home
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solrserver/" class="md-nav__link">
+        Solr Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongoserver/" class="md-nav__link">
+        Mongo Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testserver/" class="md-nav__link">
+        Testserver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kairntech/" class="md-nav__link">
+        Kairntech
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" tabindex="0" aria-expanded="false">
+          Pipelines
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pipelines" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_1" type="checkbox" id="__nav_2_3_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_1" tabindex="0" aria-expanded="false">
+          VIVO Package
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VIVO Package" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          VIVO Package
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clusters/" class="md-nav__link">
+        Cluster scripts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongoimport/" class="md-nav__link">
+        Mongo import
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelines/" class="md-nav__link">
+        Mongo2Vivo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_2" tabindex="0" aria-expanded="false">
+          Classification pipelines
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Classification pipelines" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Classification pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vorklassifikationspipelines/" class="md-nav__link">
+        Automatic pre classification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-klassifikationspipelines/" class="md-nav__link">
+        API import and classification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Ontologies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ontologies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Ontologies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ontologien/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bua-ontology/" class="md-nav__link">
+        BUA VIVO Upper Ontology
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" tabindex="0" aria-expanded="false">
+          Alliance member Ontologies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Alliance member Ontologies" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Alliance member Ontologies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organigram/" class="md-nav__link">
+        Organigram ontologies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charite-ontology/" class="md-nav__link">
+        Charité – Universitätsmedizin Berlin Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fub-ontology/" class="md-nav__link">
+        Freie Universität Berlin Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vivo-core/" class="md-nav__link">
+        Berlin University Alliance VIVO   Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vokabularen/" class="md-nav__link">
+        Vocabularies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="system-requirements">System requirements</h1>
+<p>If time has passed between the server setup and the installation, apt should be updated again:</p>
+<pre><code class="language-sh">sudo apt update
+</code></pre>
+<p><strong>Open Java Developer Kit:</strong></p>
+<pre><code class="language-sh">sudo apt install default-jdk
+</code></pre>
+<p><strong>Maven</strong></p>
+<pre><code class="language-sh">sudo apt install maven
+</code></pre>
+<p><strong>Curl</strong></p>
+<pre><code class="language-sh">sudo apt install curl
+</code></pre>
+<p><strong>git</strong></p>
+<pre><code class="language-sh">sudo apt install git
+</code></pre>
+<p><strong>Apache Tomcat</strong></p>
+<p>Tomcat does not have its own user group here, as VIVO lives and works in the Tomcat directory.</p>
+<p>The Tomcat download can in principle take place anywhere, but it is advisable to execute it in the /tmp folder.</p>
+<pre><code class="language-sh">cd /tmp
+curl -O http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
+</code></pre>
+<p>Tomcat is installed in the opt/tomcat directory:</p>
+<pre><code class="language-sh">sudo mkdir /opt/tomcat
+sudo tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
+</code></pre>
+<p>Create a systemd service file for Tomcat:</p>
+<pre><code class="language-sh">sudo nano /etc/systemd/system/tomcat.service
+</code></pre>
+<p>with the following content:</p>
+<pre><code class="language-text">[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Vivo recommends including <code>-XX:MaxPermSize=128m</code> in the CATALINA_OPTS. VIVO also recommends a max heap of 512m, we are currently working with 1024M. So far there has been no loss of performance.</p>
+<p>To activate UTF-8 compatibility in Tomcat, open the setup.xml:</p>
+<pre><code class="language-sh">nano /opt/tocat/conf/server.xml
+</code></pre>
+<p>and activate URI encoding in the connector elements:</p>
+<pre><code class="language-xml"> &lt;Server ...&gt;
+
+  &lt;Service ...&gt;
+
+    &lt;Connector ... URIEncoding=&quot;UTF-8&quot;/&gt;
+
+      ...
+
+    &lt;/Connector&gt;
+
+  &lt;/Service&gt;
+
+&lt;/Server&gt; 
+</code></pre>
+<p>Start / stop Tomcat</p>
+<pre><code class="language-sh">sudo systemctl start tomcat
+sudo systemctl stop tomcat
+</code></pre>
+<h2 id="vivo-12"><strong>VIVO 12</strong></h2>
+<h3 id="download"><strong>Download</strong></h3>
+<p>VIVO can be downloaded to a folder in /tmp or to the user directory. On the test server it is in the user directory for easy accessibility, on the live server it is loaded into /tmp.</p>
+<pre><code class="language-sh">git clone https://github.com/vivo-project/Vitro.git Vitro -b rel-1.12.2-maint
+git clone https://github.com/vivo-project/VIVO.git VIVO -b rel-1.12.2-maint
+git clone https://github.com/vivo-project/Vitro-languages.git Vitro-languages -b rel-1.12.2-maint 
+git clone https://github.com/vivo-project/VIVO-languages.git VIVO-languages -b rel-1.12.2-maint 
+</code></pre>
+<p>The Vivo installation files are no longer needed after installation and can be deleted. On the test server, the files are stored in the home directory in case of a new installation.</p>
+<h3 id="installation"><strong>Installation</strong></h3>
+<pre><code class="language-sh">mvn install -s example-settings.xml
+</code></pre>
+<p>The installation creates 2 folders:</p>
+<ul>
+<li>vivo-home: /usr/local/vivo -&gt; contains the TripleStores and SPARQL queries for the page structure and Java code,...</li>
+<li>webapps: /opt/tomcat/webapps/vivo -&gt; contains the templates, images, texts, front-end information, ...</li>
+</ul>
+<p>Beide Ordner sind in GitHub gespiegelt:</p>
+<p>The installation folder in the usr directory: <a href="https://github.com/BUA-VIVO/vivo-home-config">https://github.com/BUA-VIVO/vivo-home-config</a></p>
+<p>The webapps folder in the tomcat directory: <a href="https://github.com/BUA-VIVO/vivo-frontend">https://github.com/BUA-VIVO/vivo-frontend</a></p>
+<h2 id="after-installation-webapps"><strong>After Installation - Webapps</strong></h2>
+<p>The frontend can be pulled directly from GitHub after installation:</p>
+<ol>
+<li>
+<p>delete the entire content of /opt/tomcat/webapps/vivo</p>
+<p><code>sh
+sudo rm -r /opt/tomcat/webapps/vivo/*</code></p>
+</li>
+<li>
+<p>clone the repository from GitHub into a folder of your choice</p>
+<p><code>sh
+git clone https://github.com/BUA-VIVO/vivo-frontend main</code>
+3. create a symbolic link from the repository in /opt/tomcat/webapps</p>
+<p><code>sh
+    ln -s /path/to/frontend-repository /opt/tomcat/webapps/desired_name_of_webapp</code></p>
+</li>
+</ol>
+<p>If the webapp is to be ran as the root web application of Tomcat, rename the original ROOT folder and create the following link</p>
+<pre><code class="language-sh">    ln -s /path/to/frontend-repository /opt/tomcat/webapps/ROOT
+</code></pre>
+<p>A restart of the Tomcat server is not necessary in principle, but is recommended.</p>
+<p>To display the frontend updates in the browser, the browser cache must be deleted.</p>
+<h3 id="bua-vivo-webapp-custom-alterations-to-the-freemarker-template-files"><strong>BUA Vivo Webapp Custom alterations to the freemarker template files</strong></h3>
+<p>Vivo is a Java application, and as such it uses the <a href="https://freemarker.apache.org/index.html">Freemarker Template Engine</a> to render the html of the web application.
+The changes made to the templates mainly reside in the <a href="https://github.com/BUA-VIVO/vivo-frontend.git">vivo-frontend repository
+</a>,specifically for the <strong><em>tenderfoot</em></strong> template,  but an important configuration regarding the way the frontend renders the front page aggregated lists is additionally found in the <a href="https://github.com/BUA-VIVO/vivo-home-config">'vivo home config' repository</a>, that is, in the h<a href="https://github.com/BUA-VIVO/vivo-home-config/blob/main/rdf/display/everytime/homePageDataGetters.n3">ome page data getter configuration file</a> <strong><em>rdf/display/everytime/homePageDataGetters.n3</em></strong></p>
+<p>This file contains callable functions which perform <a href="https://www.w3.org/TR/sparql11-query/">SPARQL queries
+</a> fetching data for Berlin University alliance members, the participating Excellence Clusters as well as for Projects in the graph.</p>
+<p>The bua member function "<strong><em>display:buaDataGetter</em></strong>":</p>
+<pre><code class="language-sparql">    display:buaDataGetter
+        a &lt;java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter&gt; ;
+        display:saveToVar &quot;buaMitglieder&quot; ;
+        display:query &quot;&quot;&quot;
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX vivo: &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX vivo-de: &lt;http://vivoweb.org/ontology/core/de#&gt;
+        PREFIX vivo-bua: &lt;http://vivo.berlin-university-alliance.de/ontology/core/v1/vivo/bua#&gt;
+        PREFIX bua: &lt;http://vivo.berlin-university-alliance.de/ontology/core/v1/bua/&gt;
+        PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt;
+
+        SELECT DISTINCT ?uri ?label 
+        WHERE 
+        {
+           bua:bua obo:BFO_0000051 ?uri .
+           OPTIONAL { ?uri rdfs:label ?label . 
+           FILTER (lang(?label) = &quot;de-de&quot;) } .
+         }
+         ORDER BY ?label
+         &quot;&quot;&quot; .
+</code></pre>
+<ul>
+<li>Lines 2-10 are the namespaces needed to resolve the SPARQL query</li>
+<li>line 12 asks to select the uri identifier and the label of each entity</li>
+<li>line 15, asks to get the uri for any entity being playing the role of <strong><em>obo:BFO_0000051 (has part)</em></strong> for the <strong><em>bua</em></strong> entity</li>
+<li>line 16 -17 fetches the labels (names) for the entities in the german language perspective (de-de)</li>
+</ul>
+<p><strong>The display:buaProjectDataGetter (fetch projects) getter function:</strong></p>
+<pre><code class="language-sparql">display:buaProjectDataGetter
+      a &lt;java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter&gt; ;
+      display:saveToVar &quot;buaProjekte&quot; ;
+      display:query &quot;&quot;&quot;
+      PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+      PREFIX vivo: &lt;http://vivoweb.org/ontology/core#&gt;
+
+      SELECT DISTINCT ?uri ?label
+      WHERE
+        {
+           ?uri a vivo:Project .
+           OPTIONAL { ?uri rdfs:label ?label} . 
+         }
+         ORDER BY ?label
+      &quot;&quot;&quot; .
+</code></pre>
+<ul>
+<li>Lines 2-6 are the namespaces needed to resolve the SPARQL query</li>
+<li>line 8 asks to select the uri identifier and the label of each entity</li>
+<li>line 11, asks to get the uri for any entity instantiating the <strong><em>vivo:Project</em></strong> class</li>
+<li>line 12 fetches the labels (names) for the projects</li>
+</ul>
+<p><strong>The display:exzellenzClustersDataGetter (fetch excellence clusters) getter function:</strong></p>
+<pre><code class="language-sparql">display:exzellenzClustersDataGetter
+    a &lt;java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter&gt; ;
+    display:saveToVar &quot;exzellenzClusters&quot; ;
+    display:query &quot;&quot;&quot;
+    PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+    PREFIX vivo: &lt;http://vivoweb.org/ontology/core#&gt;
+    PREFIX vivo-de: &lt;http://vivoweb.org/ontology/core/de#&gt;
+    PREFIX bua: &lt;http://vivo.berlin-university-alliance.de/ontology/core/v1/bua/&gt;
+
+    SELECT DISTINCT ?uri ?label 
+    WHERE 
+    {
+       ?uri a bua:Exzellenzcluster .
+       OPTIONAL { ?uri rdfs:label ?label . 
+       FILTER (lang(?label) = &quot;en-us&quot;) } .
+     }
+     ORDER BY ?label
+     &quot;&quot;&quot; .
+</code></pre>
+<ul>
+<li>Lines 2-8 are the namespaces needed to resolve the SPARQL query</li>
+<li>line 10 asks to select the uri identifier and the label of each entity</li>
+<li>line 13, asks to get the uri for any entity instantiating the  <strong><em>bua:Exzellenzcluster</em></strong> class</li>
+<li>line 14 -15 fetches the labels (names) for the entities in the english language perspective (de-de)</li>
+</ul>
+<h4 id="calls-to-the-functions-in-the-web-app-template-code">Calls to the functions in the web app template code</h4>
+<h5 id="templatesfreemarkerliblib-home-pageftl"><strong>templates/freemarker/lib/lib-home-page.ftl:</strong></h5>
+<p>Renders the html for the faculty member section on the home page, Works in conjunction with the homePageUtils.js file, which contains the ajax call
+The data is parsed from the variables created in the SPARQL queries of the <strong>homePageDataGetters.n3</strong> file and made ready for calls from <strong>themes/tenderfoot/templates/page/page-home.ftl</strong></p>
+<h5 id="jshomepageutilsjs"><strong>js/homePageUtils.js</strong></h5>
+<p>contains the functions</p>
+<ul>
+<li>buildExzellenzClusters()</li>
+<li>buildBuaMitglieder()</li>
+<li>buildBuaProjects()</li>
+</ul>
+<p>which build the html for rendering, reading the corresponding variables in the <strong>lib-home-page.ftl</strong></p>
+<h5 id="themestenderfoottemplatespagepage-homeftl"><strong>themes/tenderfoot/templates/page/page-home.ftl</strong></h5>
+<p>Calls and renders the data generated in <strong>lib-home-page.ftl</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;!-- List List of bua members --&gt;
+        &lt;@lh.buaMitGliederHtml /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;!-- List of exzellenzclusters --&gt;
+        &lt;@lh.exzellenzClusterHtml /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;!-- List of projects --&gt;
+        &lt;@lh.buaProjectHtml /&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="language-files">Language files</h4>
+<p>The templates read the strings for the labels in the web application from i18n language configuration files found in the  i18n folder, specifically, the </p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/i18n/vivo_all_de_DE.properties">vivo_all_de_DE.properties</a></li>
+<li><a href="https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/i18n/all_de_DE.properties">all_de_DE.properties</a></li>
+</ul>
+<p>and </p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/themes/tenderfoot/i18n/all_en_US.properties">themes/tenderfoot/i18n/all_en_US.properties</a></li>
+</ul>
+<h4 id="css-alterations">CSS ALTERATIONS</h4>
+<p>For the BUA VIVO project, some alterations and additions to some of the tenderfoot theme stylesheets where implemented:</p>
+<h5 id="themestenderfootcsspage-homecss"><strong><a href="https://raw.githubusercontent.com/BUA-VIVO/vivo-frontend/main/themes/tenderfoot/css/page-home.css">themes/tenderfoot/css/page-home.css</a></strong></h5>
+<pre><code class="language-css">
+.jumbotron {
+    background-color: transparent;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 1px 1px 4px #153f6c;
+
+}
+
+.jumbotron p {
+    color: #fff;
+    text-shadow: 1px 1px 15px #153f6c, 1px 1px 5px #153f6c, 1px     1px 5px #153f6c;
+    margin-top: 0px;
+    bottom-top: 10px;
+}
+
+
+.jumbotron h1 {
+    font-size: 32px;
+    margin-top: 20px;
+} /*added by vivo-bua to change intro font size*/
+
+.hero {
+    /*background: #283a4b url(../images/hero-backgroundBUA.png) repeat-x 0 0;*/
+    background: linear-gradient(rgba(7,65,47, 0), rgba(7,65,47, 0)), url(../images/hero-backgroundBUA.png);
+  height: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+}
+
+.home-sections {
+    border-top: 1px dotted #dbe3e3; /* stroke */
+    border-bottom: 0px dotted #dbe3e3; /* stroke */
+    background-color: #fff; /* layer fill content */
+}
+
+.home-sections h4 {
+    border-top: 1px solid rgba(220,228,227,.42); /* stroke */
+    border-bottom: 1px solid rgba(220,228,227,.42); /* stroke */
+    /* background-color: #395d7f; /* layer fill content */
+    background-color: #4DB178;
+    border-bottom: 2px solid #86C8A3;
+    color: #fff;
+}
+
+div.faculty-home {
+    padding-top: 60px;
+}
+
+section#home-bua-mitglieder &gt; div#bua-mitglieder &gt; ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-exzellenz-cluster &gt; div#exzellenz-Clusters &gt; ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-bua-project &gt; div#bua-projects &gt; ul {
+  margin: 0;
+  border: 0;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+section#home-bua-project &gt; div#bua-projects &gt; ul &gt; li {
+  padding-bottom: 5px;
+}
+
+section#home-research &gt; ul {
+  margin: 0;
+  border: 0;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+
+</code></pre>
+<h5 id="themestenderfootcsstenderfootcss"><strong>themes/tenderfoot/css/tenderfoot.css</strong></h5>
+<pre><code class="language-css">
+.navbar-toggle .button-label {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    color: #4EB178; 
+    line-height: 14px;
+    padding-right: 10px;
+}
+
+body {
+    padding: 0;
+    height: 100%; /* needed for container min-height */
+    font-family: &quot;Noto Sans&quot;, &quot;Lucida Sans Unicode&quot;,&quot;Lucida Grande&quot;, Geneva, helvetica, sans-serif;
+    height: auto !important; /* real browsers */
+    height: 100%; /* IE6: treaded as min-height*/;
+    min-height: 100%; /* real browsers */
+    margin: 0 auto;
+   /* background: #f3f3f0 url(../images/header-backgroundBUA.png) center 0 no-repeat;*/
+
+  /*  background: linear-gradient(rgba(7,65,47, 1),rgba(7,65,47, 1), rgba(199,205,205,1)), url(../images/header-backgroundBUA.png);*/
+
+   /*  background: linear-gradient(180deg, #07412F, #07412F, #C7CDCD, #C7CDCD, #C7CDCD); */
+
+/* background: linear-gradient(180deg, #360860,#360860,#E2DEE6, #E2DEE6,#E2DEE6);*/
+
+background: linear-gradient(rgba(7,65,47, 1),rgba(7,65,47, 1), rgba(7,65,47, 0.5), rgba(211,215,215,1),rgba(211,215,215,1));
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+}
+
+
+#wrapper-content {
+    background: repeat scroll 0 0 #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.row.title {
+    background: #07412F;
+    padding-top: 7px;
+    padding-bottom: 3px;
+}
+
+.person-details {
+    background: #f3f3f;
+    padding-bottom: 5px;
+}
+
+
+#search-field {
+    width: 396px;
+    height: 38px;
+    background: url(../images/search-interior-pages.png) 0 0    no-repeat;
+    background-size: cover;
+}
+
+
+.icon-search {
+    text-decoration: none;
+    background-color: transparent;
+    color: #4DB178;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+footer .row {
+    background-color: #07412F;
+    /*  background-color: black;
+    background-color: rgba(0, 0, 0, 0);*/
+}
+
+
+footer p.partners {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+ul#footer-nav {
+    float: right;
+    list-style: none;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+}
+
+#footer-nav a:hover,
+a.terms, a.partners,
+a.powered-by-vivo {
+    color: white;
+    text-decoration: none;
+}
+
+
+#footer-nav  a.terms:hover, a.partners,
+a.powered-by-vivo:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* BRANDING ------&gt;  BUA LOGO */
+h1.vivo-logo {
+    position: absolute;
+    width: 100%;
+    max-width: 442px;
+    height: 59px;
+    top: 30px;
+    left: 0;
+    /* background: url(../images/VIVO-logo.png) 0 0 no-repeat; */
+    background: url(../images/BUA_logo.svg) 0 0 no-repeat;
+    background-size: 100% auto;
+}
+
+
+</code></pre>
+<h4 id="bua-images">BUA IMAGES</h4>
+<p>Some images specific to the BUA VIVO were created:</p>
+<ul>
+<li><a href="https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/BUA_logo.png">themes/tenderfoot/images/BUA_logo.png</a></li>
+<li><a href="https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/BUA_logo.svg">themes/tenderfoot/images/BUA_logo.svg</a></li>
+<li><a href="https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/Footer.png">themes/tenderfoot/images/Footer.png</a></li>
+<li><a href="https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/header-backgroundBUA.png">themes/tenderfoot/images/header-backgroundBUA.png</a></li>
+<li><a href="https://github.com/BUA-VIVO/vivo-frontend/blob/main/themes/tenderfoot/images/hero-backgroundBUA.png">themes/tenderfoot/images/hero-backgroundBUA.png
+</a></li>
+</ul>
+<h2 id="after-the-installation-vivo-home"><strong>After the Installation - vivo-home</strong></h2>
+<p>Before using vivo-home for the first time, the runtime.properties must be adapted.</p>
+<pre><code class="language-text">Vitro.defaultNamespace = http://vivo.berlin-university-alliance.de/individual/
+
+rootUser.emailAddress = xxx@yyy.zzz
+
+vitro.local.solr.url = http://192.168.10.20:8983/solr/vivocore
+</code></pre>
+<p>The rootUser.emailAddress is only relevant for the first login and may differ.</p>
+<p>The IP in the SolR URL must be adjusted. </p>
+<p>In addition, the location of the home folder has to be configured in the webapp in frontend-repository</p>
+<p>Open <strong>vivo-frontend/META-INF/context.xml</strong> and
+change the path of the Environment/value attribute:</p>
+<pre><code class="language-xml">&lt;Context&gt;
+   &lt;Environment
+           type=&quot;java.lang.String&quot;
+           name=&quot;vitro/home&quot;
+           value=&quot;....PATH TO ...../vivo-home-config&quot; override=&quot;true&quot;/&gt;
+
+   &lt;Manager pathname=&quot;&quot; /&gt;
+&lt;/Context&gt;
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/guescinr" target="_blank" rel="noopener">Rolf Guescini</a> <a href="https://github.com/fkotschka"  target="_blank" rel="noopener">Florian Kotschka</a> 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

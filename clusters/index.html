@@ -1,0 +1,1318 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This document is part of the vivo project documentation">
+      
+      
+        <meta name="author" content="Florian Kotschka,  Rolf Guescini">
+      
+      
+      
+        <link rel="prev" href="../kairntech/">
+      
+      
+        <link rel="next" href="../mongoimport/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Cluster scripts - VIVO Project Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#clusters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VIVO Project Documentation" class="md-header__button md-logo" aria-label="VIVO Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VIVO Project Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cluster scripts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BUA-VIVO/projektdokumentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BUA-VIVO/projektdokumentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OpenStackServers/" class="md-tabs__link md-tabs__link--active">
+        Technical Documentation
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ontologien/" class="md-tabs__link">
+        Ontologies
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../vokabularen/" class="md-tabs__link">
+      Vocabularies
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VIVO Project Documentation" class="md-nav__button md-logo" aria-label="VIVO Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    VIVO Project Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BUA-VIVO/projektdokumentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BUA-VIVO/projektdokumentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Technical Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Technical Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Technical Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenStackServers/" class="md-nav__link">
+        OpenStack and Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" tabindex="0" aria-expanded="false">
+          Servers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Servers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Servers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vivo/" class="md-nav__link">
+        Vivo Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solrserver/" class="md-nav__link">
+        Solr Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongoserver/" class="md-nav__link">
+        Mongo Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testserver/" class="md-nav__link">
+        Testserver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kairntech/" class="md-nav__link">
+        Kairntech
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" tabindex="0" aria-expanded="true">
+          Pipelines
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pipelines" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_1" type="checkbox" id="__nav_2_3_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_1" tabindex="0" aria-expanded="true">
+          VIVO Package
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VIVO Package" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          VIVO Package
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Cluster scripts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Cluster scripts
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    Input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    Output
+  </a>
+  
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-data" class="md-nav__link">
+    Output Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-formats" class="md-nav__link">
+    Output formats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes-and-methods" class="md-nav__link">
+    Classes and Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes and Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dunder" class="md-nav__link">
+    Dunder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person" class="md-nav__link">
+    Person
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    Project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journal" class="md-nav__link">
+    Journal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongoimport/" class="md-nav__link">
+        Mongo import
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelines/" class="md-nav__link">
+        Mongo2Vivo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_2" tabindex="0" aria-expanded="false">
+          Classification pipelines
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Classification pipelines" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Classification pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vorklassifikationspipelines/" class="md-nav__link">
+        Automatic pre classification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-klassifikationspipelines/" class="md-nav__link">
+        API import and classification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Ontologies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ontologies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Ontologies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ontologien/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bua-ontology/" class="md-nav__link">
+        BUA VIVO Upper Ontology
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" tabindex="0" aria-expanded="false">
+          Alliance member Ontologies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Alliance member Ontologies" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Alliance member Ontologies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organigram/" class="md-nav__link">
+        Organigram ontologies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charite-ontology/" class="md-nav__link">
+        Charité – Universitätsmedizin Berlin Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fub-ontology/" class="md-nav__link">
+        Freie Universität Berlin Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vivo-core/" class="md-nav__link">
+        Berlin University Alliance VIVO   Ontology Extension
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vokabularen/" class="md-nav__link">
+        Vocabularies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="clusters">Clusters</h1>
+<p>The following scripts are used to standardize data for further usage in the pipelines.</p>
+<h2 id="input">Input</h2>
+<p>Since data for the project is accepted from different sources and in different formats, data cleaning steps are required. The associated Clusters of Excellence "Matters of Activity", "NeuroCure" and "Science of Intelligence" handed in data in <code>xlsx</code> and <code>json</code> format. NeuroCure allowed the usage of publicly available data on <a href="https://orcid.org/">ORCiD</a>.</p>
+<h2 id="output">Output</h2>
+<h3 id="output-data">Output Data</h3>
+<p>For every cluster data was collected on:<br />
+- Cluster Information<br />
+- Persons
+- Projects
+- Research Output
+- Journals</p>
+<h3 id="output-formats">Output formats</h3>
+<p>The following output formats define the  minimum amount of information required for a working database in order to link information together properly. More information can be and is often provided. Additional data will be as flat key:value pairs and should be provided accordingly.</p>
+<p><strong>Cluster Information:</strong>  </p>
+<p>For Clusters, a dictionary is returned.</p>
+<pre><code class="language-json"> [
+  {
+    &quot;name&quot;: &quot;CLUSTERNAME&quot;,
+    &quot;overview&quot;: &quot;CLUSTER DESCRIPTION&quot;,
+    &quot;uri&quot;: &quot;URI*&quot;
+   }
+  ]
+</code></pre>
+<p>* URI must match entries in the <a href="https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf">BUA VIVO Ontology Extrension</a></p>
+<p><strong>Persons:</strong>  </p>
+<p>Persons can either be Cluster Members or it can be associated co-workers like Editors, co-authors, etc. For data protection purposes, only minimal biographical data of associates is processed. The output format is a list of dictionaries per Cluster.</p>
+<pre><code class="language-json">    [
+      {
+       &quot;firstName&quot;:&quot;FIRSTNAME&quot;,
+        &quot;middleName&quot;: &quot;MIDDLENAME&quot;,
+        &quot;lastName&quot;:&quot;LASTNAME&quot;,
+        &quot;givenName&quot;:&quot;GIVENNAME&quot;,
+        &quot;familyName&quot;:&quot;FAMILYNAME&quot;,
+        &quot;label&quot;:&quot;LABEL*&quot;,
+        &quot;participatesIn&quot;:&quot;CLUSTER-URI**&quot;
+       },
+       {...}   
+    ]
+
+</code></pre>
+<p>* LABEL is a human readable form of first, middle and last Name to be displayed on the Vivo plattform</p>
+<p>** CLUSTER-URI must match entries in the <a href="https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf">BUA VIVO Ontology Extrension</a></p>
+<p><strong>Projects:</strong> </p>
+<p>Outputs a list of all Projects within a cluster. Associated members are linked to a project and  their respective roles are recorded.</p>
+<pre><code class="language-json">    [
+        {
+            &quot;name&quot;:&quot;Project Name&quot;,
+            &quot;organisation&quot;: &quot;CLUSTERNAME&quot;,
+            &quot;members&quot;:[
+                      {
+                       &quot;firstName&quot;: &quot;FIRSTNAME&quot;,
+                       &quot;middleName&quot;:&quot;MIDDLENAME&quot;,
+                       &quot;lastName&quot;: &quot;LASTNAME&quot;,
+                       &quot;role&quot;:[&quot;ROLE_1&quot;,&quot;ROLE_2&quot;]
+                      },
+                      {...}
+                    ],
+        },
+        {...}
+    ]
+</code></pre>
+<p><strong>Research Output:</strong></p>
+<p>Outputs a list of all Research Output published within a cluster.</p>
+<pre><code class="language-json"> [
+   {
+     &quot;name&quot;:&quot;TITLE&quot;,
+      &quot;year&quot;: &quot;YEAR&quot;,
+      &quot;authors&quot;:[
+              {
+               &quot;firstName&quot;: &quot;FIRSTNAME&quot;,
+               &quot;middleName&quot;:&quot;MIDDLENAME&quot;,
+               &quot;lastName&quot;: &quot;LASTNAME&quot;
+              },
+              {...}
+            ],
+     },
+     {...}
+ ]
+</code></pre>
+<p>* TYPE-URI must match ontology classes within the VIVO-Ontology or within the <a href="https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf">BUA VIVO Ontology Extrension</a></p>
+<p><strong>Journals:</strong>  </p>
+<p>Returns a list of Journals, which served as publication venues for the cluster.</p>
+<pre><code class="language-json">[
+  {
+    &quot;name&quot;: &quot;JOURNALTITLE&quot;
+    },
+   {...}
+]
+</code></pre>
+<h2 id="scripts">Scripts</h2>
+<p>There needs to be one cleaning script per active data source. The scripts are written in Python and are used in the <a href="https://bua-vivo.github.io/projektdokumentation/mongoimport/">Mongo Import Script</a>. Momentarily there are 3 Scripts for each of the participating cluster:</p>
+<ul>
+<li><a href="https://github.com/BUA-VIVO/bua-vivo-pipelines/blob/main/VivoPackage/ClusterScripts/moaSetup.py">Matters of Activity</a></li>
+<li><a href="https://github.com/BUA-VIVO/bua-vivo-pipelines/blob/main/VivoPackage/ClusterScripts/NeuroCure.py">NeuroCure</a></li>
+<li><a href="https://github.com/BUA-VIVO/bua-vivo-pipelines/blob/main/VivoPackage/ClusterScripts/SCIOI.py">Science of Intelligence</a></li>
+</ul>
+<h3 id="classes-and-methods">Classes and Methods</h3>
+<p>Each Script consists of one Class (MattersOfActivity, NeuroCure and SCIoI).</p>
+<p>The minimal <code>__init__</code>Method defines the Cluster-URI and the data sources used to obtain the data points. To oblidge to data protection regulation data sources in the code can not be provided and have to be manually adapted.</p>
+<p>Matters of Activity is used as an example
+for its minimalistic methods. If other scripts are cited, this will be explicitly mentioned-</p>
+<h4 id="dunder">Dunder</h4>
+<pre><code class="language-python3">def __init__(self):
+        self.publicationXLSX = 'MOA_PUBLICATION.xlsx'
+        self.projectsJSON = 'MOA_PROJECTS.json'
+
+
+        df_raw = pd.read_excel('./input/'+self.publicationXLSX)
+        self.df = df_raw.fillna('None').reset_index(drop=True)
+        self.uri ='http://vivo.berlin-university-alliance.de/ontology/core/v1/bua/matters-activity'
+</code></pre>
+<p>The <code>__init__</code>Methods of NeuroCure and SCIoI function similar, even though they handle more imports and/or further information like language or source.</p>
+<p>Every Class has a defined name accessible using the <code>__name__</code>Method.</p>
+<h4 id="cluster">Cluster</h4>
+<pre><code class="language-python3">def Cluster(self):
+        overviewObj = '''
+            The Cluster Matters of Activity.
+            Image Space Material aims to create a basis for a new culture of materials.  [...]'''
+
+        clusterDict = {}
+        clusterDict.setdefault('name','Matters of Activity')
+        clusterDict.setdefault('overview',overviewObj)
+        clusterDict.setdefault('uri',self.uri)
+
+        return [clusterDict]
+</code></pre>
+<p>The Cluster-Method defines a simple 3 entry dictionary. The Project name and description are hardcoded for every cluster, the URI is already defined in the <code>__init__</code></p>
+<h4 id="person">Person</h4>
+<p>The source for the Person-Information varies by cluster. Matters of Activity (MoA) and SCIoI take it out of the pandas.DataFrame() defined in the <code>__init__</code>, for Neurocure JSON files were created with data from ORCiD API calls.</p>
+<p>The amount of information provided and where to find specific it inside the datasets also varies by source.
+MoA provides Names of affiliated people in 3 different columns of a excel sheet (often more than one per cell), while the NeuroCure data is already presorted.</p>
+<pre><code class="language-python3">ace = list(self.df['Authors/Contributors/Editors'])
+eds = list(self.df['Editors'])
+cm = list(self.df['Cluster members'])
+</code></pre>
+<p>The NeuroCure Script features two seperate functions. The first one is used to clean and split names retrieved from ORCiD.</p>
+<pre><code class="language-python3">def getnames(self, name):
+    lastname_prefixes = [&quot;le&quot;, &quot;von&quot;, &quot;van&quot;, &quot;de&quot;]
+    names = {&quot;firstName&quot;: &quot;&quot;, &quot;middleName&quot;: &quot;&quot;, &quot;lastName&quot;: &quot;&quot;}
+    ns = name.split(&quot; &quot;)
+
+    if len(ns) &gt; 2:
+        prefix_res = any(string in name.lower() for string in lastname_prefixes)
+        if prefix_res:
+            names['firstName'] = ns[0].strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+            names['middleName'] = &quot; &quot;.join(ns[1:-2]).strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+            names['lastName'] = &quot; &quot;.join(ns[-2:]).strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+        else:
+            names['firstName'] = ns[0].strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+            names['middleName'] = &quot; &quot;.join(ns[1:-2]).strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+            names['lastName'] = ns[-1].strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+    else:
+        names['firstName'] = ns[0].strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+        names['middleName'] = &quot;&quot;
+        names['lastName'] = ns[-1].strip().strip(&quot;,&quot;).strip(&quot;;&quot;).strip()
+
+    return names
+</code></pre>
+<p>The second one is used to check if a proper name is provided in the ORDiC data and if this name is not a duplicate. Its return type is boolean.</p>
+<pre><code class="language-python3"> def hasname(self, val, foundnames):
+     found = False
+     if 'FirstName' in val and 'LastName' in val and len(val['LastName']) &gt; 0 and len(val['FirstName']) &gt; 0:
+         if val['LastName'] + val['FirstName'] in foundnames or val['LastName'] + val['FirstName'][0] in foundnames or val['FirstName'] + val['LastName'][0] in foundnames:
+             found = True
+     elif 'firstname' in val and 'lastname' in val is not None and len(val['firstname']) &gt; 0 and len(val['lastname']) &gt; 0:
+         if val['lastname'] + val['firstname'] in foundnames or val['firstname'] + val['lastname'] in foundnames:
+             found = True
+     return found
+</code></pre>
+<p>They are then applied onto the ORCiD data of associated persons and onto the list of contributors of cluster publications.</p>
+<pre><code class="language-python3"> for _, val in enumerate(self.persons_info):
+             if val not in foundelements and not self.hasname(val, foundnames):
+
+  names = self.getnames(val['FirstName'] + ' ' + val['LastName'])
+</code></pre>
+<p>After cleaning the data, all Person-Methods will then create a dictionary of lists containing all Person-data.</p>
+<pre><code class="language-python3">    nameDict = {}
+    nameDict.setdefault('firstName',firstName)
+    nameDict.setdefault('middleName',middleName)
+    nameDict.setdefault('lastName',lastName)
+    nameDict.setdefault('givenName',givenName)
+    nameDict.setdefault('familyName',lastName)
+    nameDict.setdefault('label',label)
+    rawoutput.append(nameDict)
+</code></pre>
+<p>The MoA- and SCIoI-Scripts delete duplicates before returning the data. Neurocure skipps this step since it already deleted duplicates using the <code>hasname</code>-Method.</p>
+<pre><code class="language-python3">[output.append(x) for x in rawoutput if x not in output]
+
+return output
+</code></pre>
+<h4 id="project">Project</h4>
+<p>Equivalently to the Person Method, data is loaded from an external source, cleaned and returned as a list of dictionaries.</p>
+<p>In case of MoA, a list with all project names is created and ridded of all duplicates.</p>
+<pre><code class="language-python3"> projects = list(self.df['Achievement within the following projects'])
+ for projectLine in projects:
+     projectLineList = projectLine.split('//')
+     for project in projectLineList:
+         project = project.strip()
+         if project != 'None':
+             if project != 'No project context':
+                 projectList.append(project)
+
+ projectList = list(set(projectList))
+</code></pre>
+<p>Afterwards every member associated to each project is extracted and saved within the project context.</p>
+<pre><code class="language-python3"> for row in range(len(self.df)):
+   if pro in self.df['Achievement within the following projects'][row]:
+       persons = self.df['Cluster members'][row]
+       multiNameList = persons.split('//')
+       for nameString in multiNameList:
+           nameString = nameString.strip()
+           nameList = nameString.split(' ')
+           if len(nameList) == 2:
+               firstName, lastName = nameList
+               middleName = ''
+           elif len(nameList) == 3:
+               if '.' in nameList[1]:
+                   firstName, middleName, lastName = nameList
+               else:
+                   firstName = nameList[0]
+                   middleName = ''
+                   lastName = nameList[1]+' '+nameList[2]
+           else:
+               firstName = nameList[0]+' '+nameList[1]
+               middleName = ''
+               lastName = nameList[2]+' '+nameList[3]
+           personDict= {'firstName':firstName,
+                        'middleName':middleName,
+                        'lastName':lastName,
+                        'role': ['member'] }
+</code></pre>
+<p>Finally project information are collected inside dictionaries and appended onto a list containing projects belonging to a cluster.</p>
+<pre><code class="language-python3"> output = []
+ projectDict = {}
+ projectDict.setdefault('name',pro)
+ projectDict.setdefault('organization','Matters of Activity')
+ projectDict.setdefault('members',[])
+ projectDict['members'].append(personDict)
+ output.append(projectDict)
+ return output
+</code></pre>
+<p>#### Publication</p>
+<p>Publication Types are often specific to a certain Cluster. Often new data types must be integrated into the ontologies, before a a dataset can be uploaded. Therefore typedicts (hardcoded  dictionaries of all publication types a cluster has published and their respective URIs)  must be manually integrated into every Publication-Method.</p>
+<pre><code class="language-python3"> typedict = {
+             'Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#EditedVolume',
+             'Contribution in Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#ContributionInEditedVolume'
+             }
+</code></pre>
+<p>A dictionary for every publication is created and filled with available information. The code snipped below shows how optional data can be handled and how conditional information can be integrated.</p>
+<pre><code class="language-python3">for row in range(len(self.df)):
+    pubDict = {}
+    pubDict.setdefault('name',self.df['Title of publication'][row])
+    pubDict.setdefault('year', self.df['Year of publication'][row])
+    if self.df['Abstract'][row] != 'None':
+        pubDict.setdefault('abstract', self.df['Abstract'][row])
+    if self.df['Volume'][row] != 'None':
+        pubDict.setdefault('volume', self.df['Volume'][row])
+    if self.df['Digital Object Identifier (DOI)'][row] != 'None':
+        pubDict.setdefault('doi', self.df['Digital Object Identifier (DOI)'][row])
+    if self.df['Title of journal/archive/magazine'][row] != 'None':
+        pubDict.setdefault('hasPublicationVenue',self.df['Title of journal/archive/magazine'][row])
+    if self.df['Type of publication'][row] != 'None':
+        pubDict.setdefault('@type',typedict[self.df['Type of publication'][row]])
+
+    pages = self.df['Pages (from - to)'][row]
+    pageList = pages.split('-')
+    if len(pageList) == 1:
+        if pageList[0] not in ['None','np','Forthcoming']:
+            pubDict.setdefault('startPage',pageList[0])
+    elif len(pageList) == 2:
+        pubDict.setdefault('startPage',pageList[0])
+        pubDict.setdefault('endPage',pageList[1])
+    else:
+        pass
+</code></pre>
+<p>Name-lists are created as shown in the Person-Method and added to the dictionary. Dictionaries are appended to one list holding all publishing information of a cluster. That list will then be returned.</p>
+<h4 id="journal">Journal</h4>
+<p>In case of MoA and SCIoI, Journals are collected as a list of Journal titles, extracted directly from one column of a excel sheet.</p>
+<pre><code class="language-python3">output = []
+journalList = list(set(list(self.df_publ['Publication Title'])))
+[output.append({'name': x}) for x in journalList]
+
+return output
+</code></pre>
+<p>In case of NeuroCure, ORCiD data often provides years, which are recorded if available.</p>
+<pre><code class="language-python3">journal = {'name': val['journal-title'], 'year': val['publication-year']}
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/guescinr" target="_blank" rel="noopener">Rolf Guescini</a> <a href="https://github.com/fkotschka"  target="_blank" rel="noopener">Florian Kotschka</a> 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>
