@@ -22,9 +22,10 @@ For every cluster data was collected on:
 The following output formats define the  minimum amount of information required for a working database in order to link information together properly. More information can be and is often provided. Additional data will be as flat key:value pairs and should be provided accordingly.
 
 **Cluster Information:**  
+
 For Clusters, a dictionary is returned.
 
-``` json
+```json
  [
   {
     "name": "CLUSTERNAME",
@@ -36,53 +37,59 @@ For Clusters, a dictionary is returned.
 
 \* URI must match entries in the [BUA VIVO Ontology Extrension](https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf)
 
+
 **Persons:**  
+
 Persons can either be Cluster Members or it can be associated co-workers like Editors, co-authors, etc. For data protection purposes, only minimal biographical data of associates is processed. The output format is a list of dictionaries per Cluster.
 
- ``` json
-[
-  {
-   "firstName":"FIRSTNAME",
-    "middleName": "MIDDLENAME",
-    "lastName":"LASTNAME",
-    "givenName":"GIVENNAME",
-    "familyName":"FAMILYNAME",
-    "label":"LABEL*",
-    "participatesIn":"CLUSTER-URI**"
-   },
-   {...}
-]
- ```
+```json
+    [
+      {
+       "firstName":"FIRSTNAME",
+        "middleName": "MIDDLENAME",
+        "lastName":"LASTNAME",
+        "givenName":"GIVENNAME",
+        "familyName":"FAMILYNAME",
+        "label":"LABEL*",
+        "participatesIn":"CLUSTER-URI**"
+       },
+       {...}   
+    ]
+
+```
 
 \* LABEL is a human readable form of first, middle and last Name to be displayed on the Vivo plattform
 
 \** CLUSTER-URI must match entries in the [BUA VIVO Ontology Extrension](https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf)
 
-**Projects:**  
- Outputs a list of all Projects within a cluster. Associated members are linked to a project and  their respective roles are recorded.
+**Projects:** 
 
- ``` json
- [
- {"name":"Project Name",
-   "organisation": "CLUSTERNAME",
-   "members":[
-              {
-               "firstName": "FIRSTNAME",
-               "middleName":"MIDDLENAME",
-               "lastName": "LASTNAME",
-               "role":["ROLE_1","ROLE_2"]
-              },
-              {...}
-            ],
-   },
-   {...}
-]
- ```
+Outputs a list of all Projects within a cluster. Associated members are linked to a project and  their respective roles are recorded.
 
- **Research Output:**  
+```json
+    [
+        {
+            "name":"Project Name",
+            "organisation": "CLUSTERNAME",
+            "members":[
+                      {
+                       "firstName": "FIRSTNAME",
+                       "middleName":"MIDDLENAME",
+                       "lastName": "LASTNAME",
+                       "role":["ROLE_1","ROLE_2"]
+                      },
+                      {...}
+                    ],
+        },
+        {...}
+    ]
+```
+
+**Research Output:**
+
 Outputs a list of all Research Output published within a cluster.
 
- ``` json
+``` json
  [
    {
      "name":"TITLE",
@@ -98,11 +105,13 @@ Outputs a list of all Research Output published within a cluster.
      },
      {...}
  ]
- ```
+```
 
+ 
  \* TYPE-URI must match ontology classes within the VIVO-Ontology or within the [BUA VIVO Ontology Extrension](https://github.com/BUA-VIVO/bua-vivo-ontology-extensions/blob/main/vivo-bua-ext.rdf)
 
  **Journals:**  
+ 
 Returns a list of Journals, which served as publication venues for the cluster.
 
 ``` json
@@ -206,9 +215,9 @@ def getnames(self, name):
     return names
 ```
 
- The second one is used to check if a proper name is provided in the ORDiC data and if this name is not a duplicate. Its return type is boolean.
+The second one is used to check if a proper name is provided in the ORDiC data and if this name is not a duplicate. Its return type is boolean.
 
- ``` python3
+```python3 
  def hasname(self, val, foundnames):
      found = False
      if 'FirstName' in val and 'LastName' in val and len(val['LastName']) > 0 and len(val['FirstName']) > 0:
@@ -218,28 +227,28 @@ def getnames(self, name):
          if val['lastname'] + val['firstname'] in foundnames or val['firstname'] + val['lastname'] in foundnames:
              found = True
      return found
- ```
+```
 
  They are then applied onto the ORCiD data of associated persons and onto the list of contributors of cluster publications.
 
- ``` python3
+```python3
  for _, val in enumerate(self.persons_info):
              if val not in foundelements and not self.hasname(val, foundnames):
 
   names = self.getnames(val['FirstName'] + ' ' + val['LastName'])
- ```
+```
 
  After cleaning the data, all Person-Methods will then create a dictionary of lists containing all Person-data.
 
- ```python3
-nameDict = {}
-nameDict.setdefault('firstName',firstName)
-nameDict.setdefault('middleName',middleName)
-nameDict.setdefault('lastName',lastName)
-nameDict.setdefault('givenName',givenName)
-nameDict.setdefault('familyName',lastName)
-nameDict.setdefault('label',label)
-rawoutput.append(nameDict)
+```python3
+    nameDict = {}
+    nameDict.setdefault('firstName',firstName)
+    nameDict.setdefault('middleName',middleName)
+    nameDict.setdefault('lastName',lastName)
+    nameDict.setdefault('givenName',givenName)
+    nameDict.setdefault('familyName',lastName)
+    nameDict.setdefault('label',label)
+    rawoutput.append(nameDict)
 ```
 
 The MoA- and SCIoI-Scripts delete duplicates before returning the data. Neurocure skipps this step since it already deleted duplicates using the `hasname`-Method.
@@ -256,7 +265,7 @@ Equivalently to the Person Method, data is loaded from an external source, clean
 
  In case of MoA, a list with all project names is created and ridded of all duplicates.
 
- ``` python3
+``` python3
  projects = list(self.df['Achievement within the following projects'])
  for projectLine in projects:
      projectLineList = projectLine.split('//')
@@ -267,11 +276,11 @@ Equivalently to the Person Method, data is loaded from an external source, clean
                  projectList.append(project)
 
  projectList = list(set(projectList))
- ```
+```
 
  Afterwards every member associated to each project is extracted and saved within the project context.
 
- ``` python3
+``` python3
  for row in range(len(self.df)):
    if pro in self.df['Achievement within the following projects'][row]:
        persons = self.df['Cluster members'][row]
@@ -297,11 +306,11 @@ Equivalently to the Person Method, data is loaded from an external source, clean
                         'middleName':middleName,
                         'lastName':lastName,
                         'role': ['member'] }
- ```
+```
 
  Finally project information are collected inside dictionaries and appended onto a list containing projects belonging to a cluster.
 
- ``` python3
+``` python3
  output = []
  projectDict = {}
  projectDict.setdefault('name',pro)
@@ -310,18 +319,18 @@ Equivalently to the Person Method, data is loaded from an external source, clean
  projectDict['members'].append(personDict)
  output.append(projectDict)
  return output
- ```
+```
 
  #### Publication
 
  Publication Types are often specific to a certain Cluster. Often new data types must be integrated into the ontologies, before a a dataset can be uploaded. Therefore typedicts (hardcoded  dictionaries of all publication types a cluster has published and their respective URIs)  must be manually integrated into every Publication-Method.
 
- ``` python3
+``` python3
  typedict = {
              'Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#EditedVolume',
              'Contribution in Edited Volume/Exhibition Catalogue': 'http://vivoweb.org/ontology/core/de/bua#ContributionInEditedVolume'
              }
- ```
+```
 
 A dictionary for every publication is created and filled with available information. The code snipped below shows how optional data can be handled and how conditional information can be integrated.
 
